@@ -1,12 +1,3 @@
-// (function() {
-//     var div = document.createElement('div');
-//     div.style.position = 'fixed';
-//     div.style.top = 0;
-//     div.style.right = 0;
-//     div.textContent = 'hello, world';
-//     document.body.appendChild(div);
-// })();
-
 document.addEventListener("keydown", button1_click, false)
 
 // 캐럿이 될 img 태그와 속성 생성.
@@ -15,7 +6,7 @@ var jbBtnAt = document.createAttribute("src");
 var jbBtnAt2 = document.createAttribute("style");
 
 // 만든 속성 변수에 값 대입.
-jbBtnAt.value = "../source/img/123.png";
+jbBtnAt.value = "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
 jbBtnAt2.value = "opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 999; width: 10px; height: 20px";
 
 //실제 img 태그에 만들어 둔 속성 삽입.
@@ -32,7 +23,6 @@ function button1_click(event) {
     let coords = getSelectionCoords();
     let x = Math.round(coords.x);
     let y = Math.round(coords.y);
-    // document.getElementById("coords").innerHTML = x + ", " + y;
     console.log(x + "," + y)
 
     // 2. selection 자표로 캐럿 좌표 변환.
