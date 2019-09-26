@@ -1,4 +1,4 @@
-document.addEventListener("keydown", button1_click, false)
+document.addEventListener("keydown", caret_update, false)
 
 // 캐럿이 될 img 태그와 속성 생성.
 var jbBtn = document.createElement('img');
@@ -16,7 +16,7 @@ jbBtn.setAttributeNode(jbBtnAt2);
 //완성된 img 태그를 실제 tree 에 적용.
 document.body.appendChild(jbBtn);
 
-function button1_click(event) {
+function caret_update(event) {
 
     changeSelectionLocation(event);
     // 1. selection 좌표 뽑고 반올림 해서 변수에 저장하기
