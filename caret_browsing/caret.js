@@ -1,10 +1,11 @@
+document.addEventListener("click", caret_update, false)
 document.addEventListener("keydown", caret_update, false)
 
 // 캐럿이 될 img 태그와 속성 생성.
 var jbBtn = document.createElement('img');
 var jbBtnAt = document.createAttribute("src");
 var jbBtnAt2 = document.createAttribute("style");
-
+let range = document.createRange();
 // 만든 속성 변수에 값 대입.
 jbBtnAt.value = "../source/img/123.png";
 jbBtnAt2.value = "opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 999; width: 10px; height: 20px";
@@ -32,7 +33,6 @@ function caret_update(event) {
 }
 
 function changeSelectionLocation(event){
-    let range = document.createRange();
     let sel = window.getSelection();
     let key = event.keyCode;
     // 방향키 입력
@@ -42,16 +42,21 @@ function changeSelectionLocation(event){
         } else if (key == 37)
             range.setStart(sel.anchorNode, sel.anchorOffset - 1);
         else if (key == 38) //위 추가구현 필요
-            range.setStart(sel.anchorNode.previousSibling.previousSibling, sel.anchorOffset)
+            range.setStart(sel.anchorNode.previousSibling.previousSibling, sel.anchorOffset);
         else if (key == 40) //아래 추가구현 필요
             range.setStart(sel.anchorNode.nextSibling.nextSibling, sel.anchorOffset);
+        else if (key == null) // 마우스 입력
+            range.setStart(sel.anchorNode, sel.anchorOffset);
+        else
+            console.log("Nothing command");
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
     }
     catch(error){
         console.log("The caret can no longer move.")
     }
-    range.collapse(true);
-    sel.removeAllRanges();
-    sel.addRange(range);
+
 }
 
 function getSelectionCoords(win) {
