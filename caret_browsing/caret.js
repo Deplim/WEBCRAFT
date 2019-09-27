@@ -8,6 +8,9 @@ var jbBtnAt2 = document.createAttribute("style");
 let range = document.createRange();
 // 만든 속성 변수에 값 대입.
 jbBtnAt.value = "../source/img/123.png";
+
+// 여기에 position 부분을 absolute 로 하면 캐럿이 절대위치로 박히고
+// fixed 로 하면 화면 상대위치로 박힌다.
 jbBtnAt2.value = "opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 999; width: 10px; height: 20px";
 
 //실제 img 태그에 만들어 둔 속성 삽입.
