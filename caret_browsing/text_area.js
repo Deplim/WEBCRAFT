@@ -21,13 +21,23 @@ document.body.appendChild(ta_button);
 //text_area 함수 1 : text_area_mode 버튼이 눌렸을 때 어떤 행동을 할지 결정한다.
 function text_area_mode(){
     check=0;
-    document.addEventListener("click", insert_text_area, false)
+    document.removeEventListener("click", caret_update, false);
+    document.removeEventListener("keydown", caret_update, false);
+    document.addEventListener("click", insert_text_area, false);
 }
 
 //text_area 함수 2 : 실제로 브라우저 화면상에 textbox 를 붙인다. 
 function insert_text_area(){
+	if (event.target) {
+        targ=event.target;
+    } else if (event.srcElement) {
+        targ=event.srcElement;
+    }
+    var tname;
+    tname = targ.tagName;
+    console.log(tname)
 
-    if((check!=0)){
+    if((check!=0)&&(tname!='TEXTAREA')){
         var x = event.clientX;
         var y = event.clientY;
         console.log("click_point : "+x+" , "+y);
