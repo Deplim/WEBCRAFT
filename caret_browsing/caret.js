@@ -1,5 +1,3 @@
-
-
 document.addEventListener("click", caret_update, false)
 document.addEventListener("keydown", caret_update, false)
 
@@ -8,6 +6,7 @@ var jbBtn = document.createElement('img');
 var jbBtnAt = document.createAttribute("src");
 var jbBtnAt2 = document.createAttribute("style");
 let range = document.createRange();
+
 // 만든 속성 변수에 값 대입.
 jbBtnAt.value = "../source/img/123.png";
 jbBtnAt2.value = "opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 999; width: 10px; height: 20px";
@@ -25,13 +24,18 @@ function caret_update(event) {
     changeSelectionLocation(event);
     // 1. selection 좌표 뽑고 반올림 해서 변수에 저장하기
     let coords = getSelectionCoords();
-    let x = Math.round(coords.x);
-    let y = Math.round(coords.y);
-    document.getElementById("coords").innerHTML = x + ", " + y;
-    console.log(x + "," + y)
+    let x = Math.round(coords.x); // 캐럿 x 상대좌표
+    let y = Math.round(coords.y); // 캐럿 y 상대좌표
+
+    //절대 좌표
+    const scrolledTopLength = window.pageYOffset; // 스크롤된 길이
+    const absoluteTop = scrolledTopLength + y; // y 절대좌표
+
+    document.getElementById("coords").innerHTML = x + ", " + absoluteTop;
+    console.log(x + "," + absoluteTop)
 
     // 2. selection 자표로 캐럿 좌표 변환.
-    jbBtn.style.top = String(y) + "px";
+    jbBtn.style.top = String(absoluteTop) + "px";
     jbBtn.style.left = String(x) + "px";
 }
 
