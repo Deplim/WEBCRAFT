@@ -1,3 +1,5 @@
+
+
 document.addEventListener("click", caret_update, false)
 document.addEventListener("keydown", caret_update, false)
 
@@ -9,6 +11,7 @@ let range = document.createRange();
 // 만든 속성 변수에 값 대입.
 jbBtnAt.value = "../source/img/123.png";
 jbBtnAt2.value = "opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 999; width: 10px; height: 20px";
+
 
 //실제 img 태그에 만들어 둔 속성 삽입.
 jbBtn.setAttributeNode(jbBtnAt);
