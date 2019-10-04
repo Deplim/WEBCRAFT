@@ -49,7 +49,7 @@ function insert_text_area(){
 
         
         var text_area_att = document.createAttribute("style");
-        text_area_att.value="position: absolute; left: "+x+"px; top: "+y+"px;";
+        text_area_att.value="opacity:0.7; position: absolute; left: "+x+"px; top: "+y+"px;";
         text_area.setAttributeNode(text_area_att);
         
         document.body.appendChild(text_area);
