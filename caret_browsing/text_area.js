@@ -6,8 +6,8 @@ var ta_button_Text = document.createTextNode( 'textarea_mode' );
 ta_button.appendChild( ta_button_Text );
 
 //속성 삽입 
-var ta_button_att = document.createAttribute("onclick");
-ta_button_att.value="text_area_mode()";
+var ta_button_att = document.createAttribute("id");
+ta_button_att.value="link";
 ta_button.setAttributeNode(ta_button_att);
 
 
@@ -17,6 +17,13 @@ ta_button.setAttributeNode(ta_button_att2);
 
 // dom 트리에 달기 
 document.body.appendChild(ta_button);
+
+
+//text area mode 버튼이 눌리는 것에 반응하기
+var link = document.getElementById('link');
+    // onClick's logic below:
+link.addEventListener('click', text_area_mode);
+
 
 //text_area 함수 1 : text_area_mode 버튼이 눌렸을 때 어떤 행동을 할지 결정한다.
 function text_area_mode(){
