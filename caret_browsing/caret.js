@@ -8,7 +8,7 @@ var jbBtnAt2 = document.createAttribute("style");
 let range = document.createRange();
 
 // 만든 속성 변수에 값 대입.
-jbBtnAt.value = "../source/img/123.png";
+jbBtnAt.value = "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
 jbBtnAt2.value = "opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 999; width: 10px; height: 20px";
 
 
