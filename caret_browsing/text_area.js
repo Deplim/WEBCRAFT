@@ -56,7 +56,7 @@ function insert_text_area(){
 
         
         var text_area_att = document.createAttribute("style");
-        text_area_att.value="opacity:0.75; font-weight:600; position: absolute; left: "+x+"px; top: "+y+"px;";
+        text_area_att.value="opacity:0.75; font-weight:600; position: absolute; left: "+x+"px; top: "+y+"px; width: 100px; height: 100px;";
         text_area.setAttributeNode(text_area_att);
         
         document.body.appendChild(text_area);

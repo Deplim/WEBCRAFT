@@ -31,7 +31,6 @@ function caret_update(event) {
     const scrolledTopLength = window.pageYOffset; // 스크롤된 길이
     const absoluteTop = scrolledTopLength + y; // y 절대좌표
 
-    document.getElementById("coords").innerHTML = x + ", " + absoluteTop;
     console.log(x + "," + absoluteTop)
 
     // 2. selection 자표로 캐럿 좌표 변환.
