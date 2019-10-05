@@ -14,7 +14,7 @@ let Height = window.innerHeight; // 현재 브라우저 y 화면 크기
 
 
 // 만든 속성 변수에 값 대입.
-jbBtnAt.value = "../source/img/123.png";
+jbBtnAt.value = "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
 jbBtnAt2.value = "opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 999; width: 10px; height: 20px";
 
 //실제 img 태그에 만들어 둔 속성 삽입.
@@ -53,9 +53,11 @@ function caret_update(event) {
     const scrolledTopLength = window.pageYOffset; // 현재 스크롤
     const absoluteTop = scrolledTopLength + y; // y 절대좌표
 
+
     document.getElementById("coords").innerHTML = (x + ", " + absoluteTop+"<br>"
         + "relative:" + x + ", " + y + "<br>"
         + "browserHegith: " + Height);
+
     console.log(x + "," + absoluteTop)
 
     if(Height-30 < y){ // 아래 스크롤 이동
