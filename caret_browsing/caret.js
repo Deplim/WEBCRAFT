@@ -9,20 +9,37 @@ document.addEventListener("click", caret_update, false)
 document.addEventListener("keydown", caret_update, false)
 
 // 캐럿이 될 img 태그 생성.
-var jbBtn = document.createElement('img');
+var caret = document.createElement('img');
 
 // 캐럿에 src 속성 삽입.
-var jbBtnAt = document.createAttribute("src");
-jbBtnAt.value = "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
-jbBtn.setAttributeNode(jbBtnAt);
+var caretAt = document.createAttribute("src");
+caretAt.value = "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
+caret.setAttributeNode(caretAt);
 
 // 캐럿에 style 속성 삽입.
-var jbBtnAt2 = document.createAttribute("style");
-jbBtnAt2.value = "opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 999; width: 10px; height: 20px";
-jbBtn.setAttributeNode(jbBtnAt2);
+var caretAt2 = document.createAttribute("style");
+caretAt2.value = "opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 999; width: 10px; height: 20px";
+caret.setAttributeNode(caretAt2);
 
 //캐럿 태그를 실제 dom tree 에 달기.
-document.body.appendChild(jbBtn);
+document.body.appendChild(caret);
+
+
+// 캐럿 상태표시기 태그 생성
+var caret_state = document.createElement('div');
+
+// 캐럿 상태표시기 id 속성 삽입. 
+var caret_state_att = document.createAttribute("id");
+caret_state_att.value="caret_state";
+caret_state.setAttributeNode(caret_state_att);
+
+// 캐럿 상태표시기 style 속성 삽입. 
+var caret_state_att2 = document.createAttribute("style");
+caret_state_att2.value="position:fixed; top: 5px; left: 330px; z-index: 999; background-color : green;";
+caret_state.setAttributeNode(caret_state_att2);
+
+// 캐럿 상태표시기 dom 트리에 달기 
+document.body.appendChild(caret_state);
 
 //키보드 스크롤 막기
 jQuery(document).keydown(function(e)
@@ -43,7 +60,7 @@ $(window).resize(function(){
 
 // << 함수 영역 시작 >>
 
-// caret 함수 1 : 신호에 반응하여 캐럿 위치를 바꾸고 스크롤을 이동한다. 
+// caret 함수 2 : 신호에 반응하여 캐럿 위치를 바꾸고 스크롤을 이동한다. 
 function caret_update(event) {
 	// 신호에 따라 selection 변경 
     changeSelectionLocation(event);
@@ -75,11 +92,11 @@ function caret_update(event) {
     }
 
     // selection 자표로 캐럿 좌표 변환.
-    jbBtn.style.top = String(absoluteTop) + "px";
-    jbBtn.style.left = String(x) + "px";
+    caret.style.top = String(absoluteTop) + "px";
+    caret.style.left = String(x) + "px";
 }
 
-// caret 함수 2 : 신호에 따라 selection 위치를 바꾼다. caret update 함수에서 사용됨.
+// caret 함수 3 : 신호에 따라 selection 위치를 바꾼다. caret update 함수에서 사용됨.
 function changeSelectionLocation(event){
     let sel = window.getSelection();
     let key = event.keyCode;
@@ -111,7 +128,7 @@ function changeSelectionLocation(event){
 
 }
 
-// caret 함수 3 : 현제 seleciton 의 상대위치를 반환해 준다.
+// caret 함수 4 : 현제 seleciton 의 상대위치를 반환해 준다.
 function getSelectionCoords(win) {
     win = win || window;
     let doc = win.document;
