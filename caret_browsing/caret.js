@@ -4,9 +4,7 @@
 //필요 전역 변수들. 
 let range = document.createRange();
 
-//클릭과 버튼에 반응하기. 
-document.addEventListener("click", caret_update, false)
-document.addEventListener("keydown", caret_update, false)
+// << Element 삽입 영역 시작. >>
 
 // 캐럿이 될 img 태그 생성.
 var caret = document.createElement('img');
@@ -35,11 +33,17 @@ caret_state.setAttributeNode(caret_state_att);
 
 // 캐럿 상태표시기 style 속성 삽입. 
 var caret_state_att2 = document.createAttribute("style");
-caret_state_att2.value="position:fixed; top: 5px; left: 330px; z-index: 999; background-color : green;";
+caret_state_att2.value="position:fixed; top: 5px; left: 340px; z-index: 999; background-color : green;";
 caret_state.setAttributeNode(caret_state_att2);
 
 // 캐럿 상태표시기 dom 트리에 달기 
 document.body.appendChild(caret_state);
+
+// << Element 삽입 영역 끝. >>
+
+//클릭과 버튼에 반응하기. 
+document.addEventListener("click", caret_update, false)
+document.addEventListener("keydown", caret_update, false)
 
 //키보드 스크롤 막기
 jQuery(document).keydown(function(e)

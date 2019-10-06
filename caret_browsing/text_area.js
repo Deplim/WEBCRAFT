@@ -1,8 +1,11 @@
+// 필요 전역 변수
+var count=0;
+
 // text area mode 를 실행할 버튼 태그 생성.
 var ta_button = document.createElement('button');
 
 //버튼 이름. 
-var ta_button_Text = document.createTextNode( 'textarea_mode' );
+var ta_button_Text = document.createTextNode( 'textarea_mode(off)' );
 ta_button.appendChild( ta_button_Text );
 
 // 버튼에 id 속성 삽입 
@@ -29,12 +32,31 @@ link.addEventListener('click', text_area_mode);
 function text_area_mode(){
     check=0; // check 0 이면 버튼이 방금 눌린것 
 
-    // 텍스트 박스 모드 중에는 caret_update 용 click 과 keydown 이벤트를 해제한다.
-    document.removeEventListener("click", caret_update, false); 
-    document.removeEventListener("keydown", caret_update, false);
+    // text area 모드를 사작, 종료 change
+	if (count==0) 
+    	count=1;
+    else
+    	count=0;
 
-    // 클릭 eventlistener 를 텍스트 박스 함수를 위해 사용.
-    document.addEventListener("click", insert_text_area, false);
+    if(count==1){
+    	ta_button.innerHTML=("textarea_mode(on)");
+	    // 텍스트 박스 모드 중에는 caret_update 용 click 과 keydown 이벤트를 해제한다.
+	    document.removeEventListener("click", caret_update, false); 
+	    document.removeEventListener("keydown", caret_update, false);
+
+	    // 클릭 eventlistener 를 텍스트 박스 함수를 위해 사용.
+	    document.addEventListener("click", insert_text_area, false);
+	}
+	else{
+		ta_button.innerHTML=("textarea_mode(off)");
+
+		document.removeEventListener("click", insert_text_area, false);
+
+		document.addEventListener("click", caret_update, false); 
+	    document.addEventListener("keydown", caret_update, false);
+	}
+
+
 }
 
 //text_area 함수 2 : 실제로 브라우저 화면상에 textbox 를 붙인다. 
