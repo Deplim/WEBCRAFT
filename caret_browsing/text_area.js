@@ -69,10 +69,11 @@ function insert_text_area(){
     }
     var tname;
     tname = targ.tagName;
-    console.log(tname)
 
     // 텍스트 박스 삽입.
-    if((check!=0)&&(tname!='TEXTAREA')){ // 버튼이 방금 눌렸거나 누른 부분에 이미 textarea 있으면 실행하지 않는다. 
+    if((check!=0)&&(tname!='TEXTAREA')&&(tname!='BUTTON')){ 
+    	// 버튼이 방금 눌렸거나 누른 부분에 이미 textarea 혹은 버튼이 있으면 실행하지 않는다. 
+        
         // 마우스 클릭한 좌표 뽑기
         var x = event.clientX;
         var y = event.clientY;
@@ -89,6 +90,19 @@ function insert_text_area(){
         text_area.setAttributeNode(text_area_att);
         // 텍스트 박스 트리에 달기.
         document.body.appendChild(text_area);
+
+        // 텍스트 삭제 버튼 삽입. 형식은 위와 같음.
+        var ta_delete = document.createElement('button');
+        var ta_delete_text = document.createTextNode( 'x' );
+        ta_delete.appendChild( ta_delete_text );
+       	var ta_delete_att = document.createAttribute("onclick");
+        ta_delete_att.value="body.removeChild(this.parentNode);";
+        ta_delete.setAttributeNode(ta_delete_att);
+        var ta_delete_att2 = document.createAttribute("style");
+        ta_delete_att2.value="position: absolute; left: 2px; bottom: 2px";
+        ta_delete.setAttributeNode(ta_delete_att2);
+		text_area.appendChild(ta_delete);
+
     }
     check=check+1;
 }
