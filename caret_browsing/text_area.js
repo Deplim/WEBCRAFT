@@ -15,7 +15,7 @@ ta_button.setAttributeNode(ta_button_att);
 
 // 버튼에 style 속성 삽입. 
 var ta_button_att2 = document.createAttribute("style");
-ta_button_att2.value="position: absolute; top: 5px; left: 200px;";
+ta_button_att2.value="position: fixed; top: 5px; left: 200px;";
 ta_button.setAttributeNode(ta_button_att2);
 
 // 버튼 태그 dom 트리에 달기 
