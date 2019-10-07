@@ -120,9 +120,15 @@ function changeSelectionLocation(event){
             range.collapse(true);
         } else if (key == null){ // 마우스 입력
             range.setStart(sel.anchorNode, sel.anchorOffset);
+            range.collapse(true);
+        } else if (key == 68){
+			range.setStart(sel.anchorNode, sel.anchorOffset);
+            range.setEnd(sel.focusNode , sel.focusOffset+1);       
+        } else if (key == 65){
+			range.setStart(sel.anchorNode, sel.anchorOffset);
+            range.setEnd(sel.focusNode , sel.focusOffset-1);     
         } else {           
             console.log("Nothing command"); }
-        range.collapse(true);
         sel.removeAllRanges();
         sel.addRange(range);
     }
