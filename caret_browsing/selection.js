@@ -118,7 +118,7 @@ function changeSelectionLocation(event){
         } else if (key == 83){
 			range.setStart(sel.anchorNode, sel.anchorOffset);
             range.setEnd(sel.focusNode , sel.focusOffset);          
-        else {           
+        } else {           
             console.log("Nothing command"); }
         sel.removeAllRanges();
         sel.addRange(range);
@@ -177,12 +177,4 @@ function getSelectionCoords(win) {
     return {x: x, y: y};
 }
 
-function insert_highlight(sel){
-	console.log("2");
-	len_count=sel.focusOffset-sel.anchorOffset;
-	console.log("lenCount :"+len_count);
-	console.log("Node: "+sel.anchorNode);
-	console.log("no");
 
-
-};
