@@ -91,7 +91,7 @@ function insert_text_area(){
 
         // div style 속성 삽입.
         var div_area_att2 = document.createAttribute("style");
-        div_area_att2.value="position: absolute; left: "+absoluteLeft+"px; top: "+absoluteTop+"px; width: 300px; height: 300px;";
+        div_area_att2.value="position: absolute; left: "+absoluteLeft+"px; top: "+absoluteTop+"px; width: 100px; height: 100px;";
         div_area.setAttributeNode(div_area_att2);
 
         // div dom 트리에 달기
