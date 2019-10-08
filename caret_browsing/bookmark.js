@@ -75,10 +75,10 @@ function caret_update(event) {
     let y = Math.round(coords.y); // 캐럿 y 상대좌표
 
     //현제 스크롤 
-    const scrolledTopLength = window.pageYOffset; 
+    const scrolledTopLength = window.pageYOffset;
 
     // y 절대 좌표
-    const absoluteTop = scrolledTopLength + y; 
+    const absoluteTop = scrolledTopLength + y;
 
     // 사용자가 볼 수 있도록 커널창과 화면에 캐럿 상태 표시.
     document.getElementById("caret_state").innerHTML = ("Coordinates :"+ x + ", " + absoluteTop
