@@ -4,9 +4,13 @@
 
 console.log("start");
 
-var a = 10;
 //필요 전역 변수들. 
 let range = document.createRange();
+var count=0;
+var x=0, y=0, old_x=0;
+var absoluteTop=0;
+var highlight_on=0;
+var current_highlight=0;
 
 // << Element 삽입 영역 시작. >>
 
@@ -28,7 +32,7 @@ var caret_state = document.createElement('div');
 // 캐럿 상태표시기 id 속성 삽입. 
 caret_state.id="caret_state";
 // 캐럿 상태표시기 style 속성 삽입. 
-caret_state.style="position:fixed; top: 5px; left: 340px; z-index: 999; background-color : green;";
+caret_state.style="position:fixed; top: 5px; left: 340px; z-index: 900; background-color : green;";
 // 캐럿 상태표시기 dom 트리에 달기 
 document.body.appendChild(caret_state);
 
@@ -64,14 +68,14 @@ function caret_update(event) {
     
     // selection 좌표 뽑고 반올림 해서 변수에 저장하기
     let coords = getSelectionCoords();
-    let x = Math.round(coords.x); // 캐럿 x 상대좌표
-    let y = Math.round(coords.y); // 캐럿 y 상대좌표
+    x = Math.round(coords.x); // 캐럿 x 상대좌표
+    y = Math.round(coords.y); // 캐럿 y 상대좌표
 
     //현제 스크롤 
     const scrolledTopLength = window.pageYOffset; 
 
     // y 절대 좌표
-    const absoluteTop = scrolledTopLength + y; 
+    absoluteTop = scrolledTopLength + y; 
 
     // 사용자가 볼 수 있도록 커널창과 화면에 캐럿 상태 표시.
     document.getElementById("caret_state").innerHTML = ("Coordinates :"+ x + ", " + absoluteTop
@@ -92,6 +96,11 @@ function caret_update(event) {
     caret.style.top = String(absoluteTop) + "px";
     caret.style.left = String(x) + "px";
 
+    // 하이라이트 업데이트.
+    if(highlight_on==1){
+    	console.log("x and old_x : " + x +" , "+old_x);
+    	current_highlight.style.width=String(10+x-old_x)+"px";
+    }
 }
 
 // caret 함수 3 : 신호에 따라 selection 위치를 바꾼다. caret update 함수에서 사용됨.
@@ -117,7 +126,8 @@ function changeSelectionLocation(event){
             range.collapse(true);
         } else if (key == 83){
 			range.setStart(sel.anchorNode, sel.anchorOffset);
-            range.setEnd(sel.focusNode , sel.focusOffset);          
+            range.setEnd(sel.focusNode , sel.focusOffset); 
+            highlight_mode();         
         } else {           
             console.log("Nothing command"); }
         sel.removeAllRanges();
@@ -177,4 +187,24 @@ function getSelectionCoords(win) {
     return {x: x, y: y};
 }
 
+function highlight_mode(){
+
+	if (count==0) 
+    	count=1;
+    else
+    	count=0;
+
+    if(count==1){
+		var highlight = document.createElement('img');
+		highlight.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
+		highlight.style="opacity:0.5; position: absolute; top: "+absoluteTop+"px; left:"+x+"px; z-index: 901; width: 10px; height: 20px";
+		document.body.appendChild(highlight);
+		highlight_on=1;
+		old_x=x;
+		current_highlight=highlight;
+    }
+    else{
+    	highlight_on=0;
+    }
+};  
 
