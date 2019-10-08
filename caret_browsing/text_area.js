@@ -4,14 +4,11 @@ var count=0;
 // text area mode 를 실행할 버튼 태그 생성.
 var ta_button = document.createElement('button');
 
-//버튼 이름. 
-var ta_button_Text = document.createTextNode( 'textarea_mode(off)' );
-ta_button.appendChild( ta_button_Text );
+//버튼 이름.
+ta_button.innerHTML=("textarea_mode(off)");
 
 // 버튼에 id 속성 삽입 
-var ta_button_att = document.createAttribute("id");
-ta_button_att.value="link";
-ta_button.setAttributeNode(ta_button_att);
+ta_button.id="link";
 
 // 버튼에 style 속성 삽입. 
 ta_button.style="position: fixed; top: 5px; left: 200px;";
@@ -80,27 +77,20 @@ function insert_text_area(){
         // 텍스트 박스 테그 생성. 
         var text_area = document.createElement('textarea');
    		// 텍스트 박스 안에 디폴트로 들어가 문자.
-        var ta_Text = document.createTextNode( 'input text here :)' );
-        text_area.appendChild( ta_Text );
+        text_area.innerHTML=('input text here :)')
         // 텍스트 박스에 style 속성 삽입.
-        var text_area_att = document.createAttribute("style");
-        text_area_att.value="opacity:0.75; font-weight:600; position: absolute; left: "+x+"px; top: "+y+"px; width: 100px; height: 100px;";
-        text_area.setAttributeNode(text_area_att);
+        text_area.style="opacity:0.75; font-weight:600; position: absolute; left: "+x+"px; top: "+y+"px; width: 100px; height: 100px;";
         // 텍스트 박스 트리에 달기.
         document.body.appendChild(text_area);
 
         // 텍스트 삭제 버튼 삽입. 형식은 위와 같음.
         var ta_delete = document.createElement('button');
-        var ta_delete_text = document.createTextNode( 'x' );
-        ta_delete.appendChild( ta_delete_text );
-       	var ta_delete_att = document.createAttribute("onclick");
+        ta_delete.innerHTML=('x');
+        var ta_delete_att = document.createAttribute("onclick");
         ta_delete_att.value="body.removeChild(this.parentNode);";
         ta_delete.setAttributeNode(ta_delete_att);
-        var ta_delete_att2 = document.createAttribute("style");
-        ta_delete_att2.value="position: absolute; left: 2px; bottom: 2px";
-        ta_delete.setAttributeNode(ta_delete_att2);
-		text_area.appendChild(ta_delete);
-
+        ta_delete.style="position: absolute; left: 2px; bottom: 2px";
+        text_area.appendChild(ta_delete);
     }
     check=check+1;
 }
