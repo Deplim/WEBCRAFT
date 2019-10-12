@@ -1,8 +1,10 @@
-    //북마크 삽입 함수 
-    //if (key == 112) //F1키 누르면 북마크 - 
-          // 1.북마크 이미지를 좌표에 삽입    
-          // 2.북마크를 박은 좌표를 bookMarkArray[]에 삽입   
-          // 3.페이지 업 다운 버튼을 누르면 북마크 박은 좌표 위아래 이동
+//북마크 삽입 함수 
+//(B키-북마크 ,N키-전 북마크,M키-다음 북마크)
+
+ // 1.북마크 이미지를 좌표에 삽입    
+ // 2.북마크를 박은 좌표를 bookMarkArray[]에 삽입   
+ // 3.n 또는 m 다운 버튼을 누르면 북마크 박은 좌표 위아래 이동
+
 
 document.addEventListener("click", caret_update, false)
 document.addEventListener("keydown", caret_update, false)
