@@ -11,6 +11,7 @@ var x=0, y=0, old_x=0;
 var absoluteTop=0;
 var highlight_on=0;
 var current_highlight=0;
+var current_target=0;
 
 // << Element 삽입 영역 시작. >>
 
@@ -124,10 +125,12 @@ function changeSelectionLocation(event){
         } else if (key == null){ // 마우스 입력
             range.setStart(sel.anchorNode, sel.anchorOffset);
             range.collapse(true);
-        } else if (key == 83){
+        } else if (key == 83){ // s 키 입력 
 			range.setStart(sel.anchorNode, sel.anchorOffset);
             range.setEnd(sel.focusNode , sel.focusOffset); 
-            highlight_mode();         
+            highlight_mode();       
+        } else if(key == 46) { // delete 키 입려
+        	delete_highlight();
         } else {           
             console.log("Nothing command"); }
         sel.removeAllRanges();
@@ -201,7 +204,7 @@ function highlight_mode(){
 		highlight.style="opacity:0.5; position: absolute; top: "+absoluteTop+"px; left:"+x+"px; z-index: 901; width: 10px; height: 20px";
 		
 		var highlight_onclick = document.createAttribute("onclick");
-        highlight_onclick.value ="highlight_function(this)";
+        highlight_onclick.value ="current_target=this;";
         highlight.setAttributeNode(highlight_onclick);
 		
 		document.body.appendChild(highlight);
@@ -215,9 +218,7 @@ function highlight_mode(){
     }
 }; 
 
-function highlight_function(this_highlight){
-	
-	document.body.removeChild(this_highlight);
-	
-} 
+function delete_highlight(){
+	document.body.removeChild(current_target);
+}
 
