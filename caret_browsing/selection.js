@@ -21,7 +21,7 @@ var caret = document.createElement('img');
 caret.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
 
 // 캐럿에 style 속성 삽입.
-caret.style="opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 999; width: 10px; height: 20px";
+caret.style="opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 900; width: 10px; height: 20px";
 
 //캐럿 태그를 실제 dom tree 에 달기.
 document.body.appendChild(caret);
@@ -32,7 +32,7 @@ var caret_state = document.createElement('div');
 // 캐럿 상태표시기 id 속성 삽입. 
 caret_state.id="caret_state";
 // 캐럿 상태표시기 style 속성 삽입. 
-caret_state.style="position:fixed; top: 5px; left: 340px; z-index: 900; background-color : green;";
+caret_state.style="position:fixed; top: 5px; left: 340px; z-index: 999; background-color : green;";
 // 캐럿 상태표시기 dom 트리에 달기 
 document.body.appendChild(caret_state);
 
@@ -187,6 +187,7 @@ function getSelectionCoords(win) {
     return {x: x, y: y};
 }
 
+// highlight 함수 1 : 
 function highlight_mode(){
 
 	if (count==0) 
@@ -198,7 +199,13 @@ function highlight_mode(){
 		var highlight = document.createElement('img');
 		highlight.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
 		highlight.style="opacity:0.5; position: absolute; top: "+absoluteTop+"px; left:"+x+"px; z-index: 901; width: 10px; height: 20px";
+		
+		var highlight_onclick = document.createAttribute("onclick");
+        highlight_onclick.value ="highlight_function(this)";
+        highlight.setAttributeNode(highlight_onclick);
+		
 		document.body.appendChild(highlight);
+		
 		highlight_on=1;
 		old_x=x;
 		current_highlight=highlight;
@@ -206,5 +213,11 @@ function highlight_mode(){
     else{
     	highlight_on=0;
     }
-};  
+}; 
+
+function highlight_function(this_highlight){
+	
+	document.body.removeChild(this_highlight);
+	
+} 
 

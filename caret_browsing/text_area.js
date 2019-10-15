@@ -89,7 +89,7 @@ function insert_text_area(){
         var ta_delete_att = document.createAttribute("onclick");
         ta_delete_att.value="body.removeChild(this.parentNode);";
         ta_delete.setAttributeNode(ta_delete_att);
-        ta_delete.style="position: fixed; left: 2px; bottom: 2px; z-index:999;";
+        ta_delete.style="position: absolute; left: 2px; bottom: 2px; z-index:999;";
         text_area.appendChild(ta_delete);
     }
     check=check+1;
