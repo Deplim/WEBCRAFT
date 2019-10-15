@@ -22,7 +22,7 @@ public class NMTTestServlet extends HttpServlet {
     public NMTTestServlet() {
 // TODO Auto-generated constructor stub
     }
-
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("NMTTestServlet doPost 메소드가 실행되었습니다.");
         request.setCharacterEncoding("UTF-8");
@@ -43,7 +43,7 @@ public class NMTTestServlet extends HttpServlet {
         //애플리케이션 클라이언트 아이디값";
         String clientId = "Ymqw2n6SrR2yaZc2o0_x";
         //애플리케이션 클라이언트 시크릿값";
-        String clientSecret = "kt4d33JWcb";
+        String clientSecret = "hlh4G8xPE4";
 
         String resultString ="";
         try {
