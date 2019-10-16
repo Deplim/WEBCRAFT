@@ -62,13 +62,12 @@ function caret_update(event) {
     let x = Math.round(coords.x); // 캐럿 x 상대좌표
     let y = Math.round(coords.y); // 캐럿 y 상대좌표
 
-    //절대 좌표
-    const scrolledTopLength = window.pageYOffset; // 스크롤된 길이
-    const absoluteTop = scrolledTopLength + y; // y 절대좌표
 
-    absoluteTop2=absoluteTop;
-    x2=x;
-    
+    //현제 스크롤 
+    const scrolledTopLength = window.pageYOffset;
+
+    // y 절대 좌표
+    const absoluteTop = scrolledTopLength + y;
 
     document.getElementById("coords").innerHTML = x + ", " + absoluteTop;
    // console.log(x + "," + absoluteTop)//

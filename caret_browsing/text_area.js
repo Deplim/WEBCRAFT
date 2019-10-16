@@ -74,14 +74,39 @@ function insert_text_area(){
         var y = event.clientY;
         console.log("click_point : "+x+" , "+y);
 
+        // 현재 스크롤
+        const scrolledLeftLength = window.pageXOffset;
+        const scrolledTopLength = window.pageYOffset;
+
+        // x, y 절대 좌표
+        const absoluteLeft = scrolledLeftLength + x;
+        const absoluteTop = scrolledTopLength + y;
+
+
+        // x와 텍스트 박스 담을 div 태그 생성
+        var div_area = document.createElement('div');
+        var div_area_att = document.createAttribute('id');
+        div_area_att.value = "div_text";
+        div_area.setAttributeNode(div_area_att);
+
+        // div style 속성 삽입.
+        var div_area_att2 = document.createAttribute("style");
+        div_area_att2.value="position: absolute; left: "+absoluteLeft+"px; top: "+absoluteTop+"px; width: 100px; height: 100px;";
+        div_area.setAttributeNode(div_area_att2);
+
+        // div dom 트리에 달기
+        document.body.appendChild(div_area);
+
+
         // 텍스트 박스 테그 생성. 
         var text_area = document.createElement('textarea');
    		// 텍스트 박스 안에 디폴트로 들어가 문자.
         text_area.innerHTML=('input text here :)')
         // 텍스트 박스에 style 속성 삽입.
-        text_area.style="opacity:0.75; font-weight:600; position: absolute; left: "+x+"px; top: "+y+"px; width: 100px; height: 100px;";
+        text_area.style="opacity:0.75; font-weight:600; position: absolute; left: 0px; top: 0px; width: 100px; height: 100px;";
         // 텍스트 박스 트리에 달기.
-        document.body.appendChild(text_area);
+        // document.body.appendChild(text_area);
+        div_area.appendChild(text_area);
 
         // 텍스트 삭제 버튼 삽입. 형식은 위와 같음.
         var ta_delete = document.createElement('button');
@@ -89,8 +114,9 @@ function insert_text_area(){
         var ta_delete_att = document.createAttribute("onclick");
         ta_delete_att.value="body.removeChild(this.parentNode);";
         ta_delete.setAttributeNode(ta_delete_att);
-        ta_delete.style="position: absolute; left: 2px; bottom: 2px; z-index:999;";
-        text_area.appendChild(ta_delete);
+
+        ta_delete.style="position: absolute; left: -25px; top: 2px; ";
+        div_area.appendChild(ta_delete);
     }
     check=check+1;
 }
