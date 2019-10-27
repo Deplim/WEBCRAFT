@@ -17,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+
 @WebServlet("/NMTTestServlet")
 public class NMTTestServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -24,11 +25,21 @@ public class NMTTestServlet extends HttpServlet {
     public NMTTestServlet() {
 // TODO Auto-generated constructor stub
     }
-
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("NMTTestServlet doPost 메소드가 실행되었습니다.");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
+        
+        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+//        response.setHeader("Content-Type", "application/json");
+//        response.setHeader("Accept", "application/json");
+        
+
 
         //어떤 언어를 번역할지
         String original_source = (String)request.getParameter("original_source");
@@ -57,7 +68,7 @@ public class NMTTestServlet extends HttpServlet {
         	String source = URLEncoder.encode(original_source, "UTF-8");
         	String target = URLEncoder.encode(original_target, "UTF-8");
             String text = URLEncoder.encode(original_str, "UTF-8");
-
+          
             String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
