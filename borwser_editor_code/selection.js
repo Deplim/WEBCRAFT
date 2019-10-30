@@ -99,7 +99,6 @@ function caret_update(event) {
 
     // 하이라이트 업데이트.
     if(highlight_on==1){
-    	console.log("x and old_x : " + x +" , "+old_x);
     	current_highlight.style.width=String(10+x-old_x)+"px";
     }
 }
@@ -117,11 +116,11 @@ function changeSelectionLocation(event){
             range.setStart(sel.anchorNode, sel.anchorOffset - 1);
             range.collapse(true);
         } else if (key == 38){ // 위 방향키 
-            range.setStart(sel.anchorNode.previousSibling.previousSibling, sel.anchorOffset);
-            range.collapse(true);
+        	sel.modify('move', 'backward', "line");
+        	return 0;
         } else if (key == 40){ // 아래 방향키 
-            range.setStart(sel.anchorNode.nextSibling.nextSibling, sel.anchorOffset);
-            range.collapse(true);
+            sel.modify('move', 'forward', "line");
+            return 0;
         } else if (key == null){ // 마우스 입력
             range.setStart(sel.anchorNode, sel.anchorOffset);
             range.collapse(true);
@@ -137,7 +136,7 @@ function changeSelectionLocation(event){
         sel.addRange(range);
     }
     catch(error){
-        console.log("The caret can no longer move.");
+        console.log(error.message);
     }
 
 }

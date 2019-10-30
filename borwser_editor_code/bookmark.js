@@ -13,7 +13,6 @@ document.addEventListener("keydown", bookmark_reaction, false)
 
 // caret 함수 3 : 신호에 따라 selection 위치를 바꾼다. caret update 함수에서 사용됨.
 function bookmark_reaction(event){
-	console.log("bookmark reaction")
     let key = event.keyCode;
   	// 받은 입력이 무엇인가.
     try{
@@ -27,9 +26,6 @@ function bookmark_reaction(event){
             window.scrollTo(bookMarkArrayX[i2],bookMarkArrayY[i2]);
  
              }
-        else{           
-            console.log("Nothing command"); 
-        }
     }
     catch(error){
         console.log("bookmark error.");
