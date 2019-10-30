@@ -1,4 +1,4 @@
-package nmt;
+package servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -17,10 +17,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-
 @WebServlet("/NMTTestServlet")
 public class NMTTestServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 102831973239L;
 
     public NMTTestServlet() {
 // TODO Auto-generated constructor stub
@@ -30,32 +29,18 @@ public class NMTTestServlet extends HttpServlet {
         System.out.println("NMTTestServlet doPost 메소드가 실행되었습니다.");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
-        
-        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-        response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
-//        response.setHeader("Content-Type", "application/json");
-//        response.setHeader("Accept", "application/json");
-        
 
-
-        //어떤 언어를 번역할지
-        String original_source = (String)request.getParameter("original_source");
-        //어떤 언어로 번역할지
-        String original_target = (String)request.getParameter("original_target");
         //번역할 text 값을 받아 옵니다
         String original_str = (String)request.getParameter("original_str");
 
         //결과값 보내기 위한것
         PrintWriter out = response.getWriter();
-        out.print((String)nmtReturnRseult(original_str, original_source, original_target));
+        out.print((String)nmtReturnRseult(original_str));
 
     }
 
     // nmtReturnResult의 함수를 통해서 한글 - > 영어로 번역
-    public String nmtReturnRseult(String original_str, String original_source, String original_target){
+    public String nmtReturnRseult(String original_str){
 
         //애플리케이션 클라이언트 아이디값";
         String clientId = "Ymqw2n6SrR2yaZc2o0_x";
@@ -65,10 +50,8 @@ public class NMTTestServlet extends HttpServlet {
         String resultString ="";
         try {
             //original_str 값이 우리가 변환할 값
-        	String source = URLEncoder.encode(original_source, "UTF-8");
-        	String target = URLEncoder.encode(original_target, "UTF-8");
             String text = URLEncoder.encode(original_str, "UTF-8");
-          
+
             String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -76,7 +59,7 @@ public class NMTTestServlet extends HttpServlet {
             con.setRequestProperty("X-Naver-Client-Id", clientId);
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
             // post request
-            String postParams = "source=" + source + "&target=" + target + "&text=" + text;
+            String postParams = "source=ko&target=en&text=" + text;
             con.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
             wr.writeBytes(postParams);
