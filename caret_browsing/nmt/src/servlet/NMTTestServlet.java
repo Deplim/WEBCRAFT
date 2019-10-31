@@ -38,7 +38,7 @@ public class NMTTestServlet extends HttpServlet {
         //번역할 text 값을 받아 옵니다
         String original_str = (String)request.getParameter("original_str");
         String original_language = (String)request.getParameter("original_language");
-        String change_language = (String)request.getParameter("chage_language");
+        String change_language = (String)request.getParameter("change_language");
 
         //결과값 보내기 위한것
         PrintWriter out = response.getWriter();
@@ -62,7 +62,7 @@ public class NMTTestServlet extends HttpServlet {
             String text = URLEncoder.encode(original_str, "UTF-8");
             String ori_language = URLEncoder.encode(original_language, "UTF-8");
             String cha_language = URLEncoder.encode(change_language, "UTF-8");
-
+            
             String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
