@@ -37,15 +37,17 @@ public class NMTTestServlet extends HttpServlet {
 
         //번역할 text 값을 받아 옵니다
         String original_str = (String)request.getParameter("original_str");
+        String original_language = (String)request.getParameter("original_language");
+        String change_language = (String)request.getParameter("chage_language");
 
         //결과값 보내기 위한것
         PrintWriter out = response.getWriter();
-        out.print((String)nmtReturnRseult(original_str));
+        out.print((String)nmtReturnRseult(original_str, original_language, change_language));
 
     }
 
     // nmtReturnResult의 함수를 통해서 한글 - > 영어로 번역
-    public String nmtReturnRseult(String original_str){
+    public String nmtReturnRseult(String original_str, String original_language, String change_language){
 
         //애플리케이션 클라이언트 아이디값";
         String clientId = "Ymqw2n6SrR2yaZc2o0_x";
@@ -55,7 +57,11 @@ public class NMTTestServlet extends HttpServlet {
         String resultString ="";
         try {
             //original_str 값이 우리가 변환할 값
+        	//ori_language = 현재 언어
+        	//cha_language = 번역후 언어
             String text = URLEncoder.encode(original_str, "UTF-8");
+            String ori_language = URLEncoder.encode(original_language, "UTF-8");
+            String cha_language = URLEncoder.encode(change_language, "UTF-8");
 
             String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
             URL url = new URL(apiURL);
@@ -64,7 +70,7 @@ public class NMTTestServlet extends HttpServlet {
             con.setRequestProperty("X-Naver-Client-Id", clientId);
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
             // post request
-            String postParams = "source=ko&target=en&text=" + text;
+            String postParams = "source="+ori_language+"&target="+cha_language+"&text=" + text;
             con.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
             wr.writeBytes(postParams);

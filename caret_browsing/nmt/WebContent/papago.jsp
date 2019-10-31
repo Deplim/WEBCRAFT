@@ -25,7 +25,9 @@
 	$('#jsonConvertStringSend').click(function() {
 		//번역할 object를 생성
 		var test = {
-			"original_str" : $("#send_text").val()
+			"original_str" : $("#send_text").val(),
+			"original_language" : "ko",
+			"change_language" : "en"
 		};
 		jsonSend(test);
 	});
