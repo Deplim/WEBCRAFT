@@ -6,10 +6,9 @@ console.log("start");
 
 //필요 전역 변수들. 
 let range = document.createRange();
-var count=0;
-var x=0, y=0, old_x=0;
+var x=0, y=0, old_x=0, old_offset;
 var absoluteTop=0;
-var highlight_on=0;
+var highlight_mode_on=0;
 var current_highlight=0;
 var current_target=0;
 
@@ -98,7 +97,7 @@ function caret_update(event) {
     caret.style.left = String(x) + "px";
 
     // 하이라이트 업데이트.
-    if(highlight_on==1){
+    if(highlight_mode_on==1){
     	current_highlight.style.width=String(10+x-old_x)+"px";
     }
 }
@@ -125,9 +124,7 @@ function changeSelectionLocation(event){
             range.setStart(sel.anchorNode, sel.anchorOffset);
             range.collapse(true);
         } else if (key == 83){ // s 키 입력 
-			range.setStart(sel.anchorNode, sel.anchorOffset);
-            range.setEnd(sel.focusNode , sel.focusOffset); 
-            highlight_mode();       
+            highlight_mode(sel);     
         } else if(key == 46) { // delete 키 입려
         	delete_highlight();
         } else {           
@@ -190,14 +187,14 @@ function getSelectionCoords(win) {
 }
 
 // highlight 함수 1 : 
-function highlight_mode(){
+function highlight_mode(sel){
 
-	if (count==0) 
-    	count=1;
+	if (highlight_mode_on==0) 
+    	highlight_mode_on=1;
     else
-    	count=0;
+    	highlight_mode_on=0;
 
-    if(count==1){
+    if(highlight_mode_on==1){
 		var highlight = document.createElement('img');
 		highlight.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
 		highlight.style="opacity:0.5; position: absolute; top: "+absoluteTop+"px; left:"+x+"px; z-index: 901; width: 10px; height: 20px";
@@ -208,15 +205,26 @@ function highlight_mode(){
 		
 		document.body.appendChild(highlight);
 		
-		highlight_on=1;
 		old_x=x;
+		old_offset=sel.anchorOffset
 		current_highlight=highlight;
+
+		range.setStart(sel.anchorNode, sel.anchorOffset);
+        range.setEnd(sel.focusNode , sel.focusOffset); 
+        range.collapse(true);
     }
     else{
-    	highlight_on=0;
+    	range.setStart(sel.anchorNode, old_offset);
+        range.setEnd(sel.focusNode , sel.focusOffset); 
+        sel.removeAllRanges();
+        sel.addRange(range);
+        console.log(sel.toString())
+        range.setStart(sel.anchorNode, old_offset);
+        range.setEnd(sel.focusNode , sel.focusOffset); 
     }
 }; 
 
+// highlight 함수 2 : 
 function delete_highlight(){
 	document.body.removeChild(current_target);
 }

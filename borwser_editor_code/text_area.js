@@ -1,5 +1,6 @@
 // 필요 전역 변수
 var count=0;
+var textarea_array=new Array();
 
 // text area mode 를 실행할 버튼 태그 생성.
 var ta_button = document.createElement('button');
@@ -7,20 +8,13 @@ var ta_button = document.createElement('button');
 //버튼 이름.
 ta_button.innerHTML=("textarea_mode(off)");
 
-// 버튼에 id 속성 삽입 
-ta_button.id="link";
-
 // 버튼에 style 속성 삽입. 
 ta_button.style="position: fixed; top: 5px; left: 200px;";
 
 // 버튼 태그 dom 트리에 달기 
 document.body.appendChild(ta_button);
 
-
-//text area mode 버튼이 눌리는 것에 반응하기
-var link = document.getElementById('link');
-    // onClick's logic below:
-link.addEventListener('click', text_area_mode);
+ta_button.addEventListener('click', text_area_mode);
 
 
 //text_area 함수 1 : text_area_mode 버튼이 눌렸을 때 어떤 행동을 할지 결정한다.
@@ -50,8 +44,6 @@ function text_area_mode(){
 		document.addEventListener("click", caret_update, false); 
 	    document.addEventListener("keydown", caret_update, false);
 	}
-
-
 }
 
 //text_area 함수 2 : 실제로 브라우저 화면상에 textbox 를 붙인다. 
@@ -117,6 +109,8 @@ function insert_text_area(){
 
         ta_delete.style="position: absolute; left: -25px; top: 2px; ";
         div_area.appendChild(ta_delete);
+
+        textarea_array.push(div_area);
     }
     check=check+1;
 }
