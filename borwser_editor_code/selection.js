@@ -32,7 +32,7 @@ var caret_state = document.createElement('div');
 // 캐럿 상태표시기 id 속성 삽입. 
 caret_state.id="caret_state";
 // 캐럿 상태표시기 style 속성 삽입. 
-caret_state.style="position:fixed; top: 5px; left: 340px; z-index: 999; background-color : green;";
+caret_state.style="position:fixed; top: 5px; left: 530px; z-index: 999; background-color : green;";
 // 캐럿 상태표시기 dom 트리에 달기 
 document.body.appendChild(caret_state);
 

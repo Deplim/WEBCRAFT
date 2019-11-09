@@ -28,8 +28,14 @@ function recieveURL(){
 
 function createURL() {
 	for(var i=0 in textarea_array){
+		var temp=textarea_array[i].getElementsByTagName("TEXTAREA")
+		console.log(textarea_array[i])
+		console.log(temp[0])
+		console.log("textarea value : "+temp[0].value)
+		temp[0].innerHTML=temp[0].value
 		textarea_html_array[i]=textarea_array[i].outerHTML;
 	}
+	console.log(textarea_html_array)
     chrome.storage.sync.set({ "data" : textarea_html_array }, function() {
         if (chrome.runtime.error) {
             console.log("Runtime error.");
