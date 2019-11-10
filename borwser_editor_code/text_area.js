@@ -103,14 +103,25 @@ function insert_text_area(){
         // 텍스트 삭제 버튼 삽입. 형식은 위와 같음.
         var ta_delete = document.createElement('button');
         ta_delete.innerHTML=('x');
-        var ta_delete_att = document.createAttribute("onclick");
-        ta_delete_att.value="body.removeChild(this.parentNode);";
-        ta_delete.setAttributeNode(ta_delete_att);
-
+        ta_delete.addEventListener('click', delete_textarea);
         ta_delete.style="position: absolute; left: -25px; top: 2px; ";
         div_area.appendChild(ta_delete);
 
         textarea_array.push(div_area);
     }
     check=check+1;
+}
+
+function delete_textarea(){     
+    document.body.removeChild(event.target.parentNode); 
+    console.log("before : ")
+    console.log(textarea_array)
+    for(var i=0 in textarea_array){ 
+        if(textarea_array[i]==event.target.parentNode){ 
+            console.log(textarea_array[i]); 
+            textarea_array.splice(i,i+1); 
+        }
+    }
+    console.log("after : ")
+    console.log(textarea_array)  
 }

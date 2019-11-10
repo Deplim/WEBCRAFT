@@ -11,6 +11,8 @@ var absoluteTop=0;
 var highlight_mode_on=0;
 var current_highlight=0;
 var current_target=0;
+var highlight_array=new Array()
+
 
 // << Element 삽입 영역 시작. >>
 
@@ -127,6 +129,8 @@ function changeSelectionLocation(event){
             highlight_mode(sel);     
         } else if(key == 46) { // delete 키 입려
         	delete_highlight();
+        } else if(key == 84){
+        	translator();
         } else {           
             console.log("Nothing command"); }
         sel.removeAllRanges();
@@ -214,18 +218,34 @@ function highlight_mode(sel){
         range.collapse(true);
     }
     else{
+    	temp_offset=sel.anchorOffset;
     	range.setStart(sel.anchorNode, old_offset);
-        range.setEnd(sel.focusNode , sel.focusOffset); 
+        range.setEnd(sel.focusNode , sel.focusOffset+1); 
         sel.removeAllRanges();
         sel.addRange(range);
-        console.log(sel.toString())
-        range.setStart(sel.anchorNode, old_offset);
-        range.setEnd(sel.focusNode , sel.focusOffset); 
+        highlight_array.push([current_highlight,sel.toString()])
+        range.setStart(sel.anchorNode, temp_offset);
+        range.collapse(true);
     }
 }; 
 
 // highlight 함수 2 : 
 function delete_highlight(){
+	console.log(current_target);
 	document.body.removeChild(current_target);
+	for(var i=0 in highlight_array){
+		if(highlight_array[i][0]==current_target){
+			highlight_array.splice(i,i+1)
+		}
+	}
+}
+
+function translator(){
+	for(var i=0 in highlight_array){
+		if(highlight_array[i][0]==current_target){
+			console.log("content :")
+			console.log(highlight_array[i][1])
+		}
+	}
 }
 
