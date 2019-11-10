@@ -240,12 +240,57 @@ function delete_highlight(){
 	}
 }
 
+// hightlight 함수 3 :
 function translator(){
 	for(var i=0 in highlight_array){
 		if(highlight_array[i][0]==current_target){
+			//하이라이트 좌표 구하기
+			var target = current_target; // 요소의 id 값이 target이라 가정
+			var clientRect = target.getBoundingClientRect(); // DomRect 구하기 (각종 좌표값이 들어있는 객체)
+			var relativeTop = clientRect.top; // Viewport의 시작지점을 기준으로한 상대좌표 Y 값.		​
+			var relativeLeft= clientRect.Left;
+			var scrolledTopLength = window.pageYOffset; // 스크롤된 길이
+			var absoluteTop = scrolledTopLength + relativeTop; // 절대좌표
+
+
+			//번역기에 넘기기
 			console.log("content :")
 			console.log(highlight_array[i][1])
+			var test = {
+				"original_str" : highlight_array[i][1],
+				"original_language" : "en",
+				"change_language" : "ko"
+			};
+			jsonSend(test, relativeLeft, absoluteTop+8);
 		}
 	}
+}
+
+// backend translactor 연결 함수
+function jsonSend(test,left,top) {
+	$.ajax({
+		type : "POST",
+		url : "http://34.84.8.215:8080/nmt/NMTTestServlet",
+		//url : "http://localhost:8080/nmt/NMTTestServlet",
+		data : test, //json을 보내는 방법
+		success : function(data) { //서블렛을 통한 결과 값을 받을 수 있습니다.
+			//string의 값을 object 형식으로 변환합니다.
+			var resulut_obj = JSON.parse(data);
+			//결과값을 textarea에 넣기 위해서
+			console.log("translactor result : ");
+			console.log(resulut_obj.message.result.translatedText)
+			var caret = document.createElement('img');
+
+			// 번역 결과 삽입.
+			var tran_result = document.createElement('p');
+			tran_result.style="font-size:9px; font-weight:700; opacity:0.5; position: absolute; top: "+top+"px; left: "+left+"px; z-index: 899; height: 15px";
+			tran_result.innerHTML=resulut_obj.message.result.translatedText
+			document.body.appendChild(tran_result);
+		},
+		error : function(e) {
+			console.log(e);
+			alert('실패했습니다.');
+		}
+	});
 }
 

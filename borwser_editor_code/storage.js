@@ -1,5 +1,7 @@
+//필요 전역 변수
 var textarea_html_array=new Array()
 
+//필요 element 생성
 var st_button = document.createElement('button');
 st_button.innerHTML=("storage");
 st_button.style="position: fixed; top: 5px; left: 400px;";
@@ -32,8 +34,10 @@ function createURL() {
 		temp[0].innerHTML=temp[0].value
 		textarea_html_array[i]=textarea_array[i].outerHTML;
 	}
-	console.log("storage : ")
-    console.log(textarea_array)
+	for(var i=0 in highlight_array){
+		highlight_html_array[i]=textarea_array[i][0].outerHTML;
+	}
+
     chrome.storage.sync.set({ "data" : textarea_html_array }, function() {
         if (chrome.runtime.error) {
             console.log("Runtime error.");
