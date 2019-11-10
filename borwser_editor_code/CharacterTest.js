@@ -1,3 +1,6 @@
+// 얼만큼 미입력 상태일때 반응을 줄건지
+const time = 10;
+
 // 마지막으로 입력이 있었던 시간 (초기화는 페이지 시작시 시간)
 var old = new Date();
 
@@ -27,8 +30,8 @@ function PrintTime() {
     var gap = today.getTime() - old.getTime(); // 시간 차이
     var sec_gap = gap / 1000; // 시간 차이 (sec)
 
-    // 10초간 키보드, 마우스 클릭 없을시
-    if(sec_gap > 10 && !appear){
+    // time 초간 키보드, 마우스 클릭 없을시
+    if(sec_gap > time && !appear){
         alert("잠수?");
         appear = true; // 캐릭터 떠있는 상태라 설정해줌
     }
