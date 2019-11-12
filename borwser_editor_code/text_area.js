@@ -114,14 +114,10 @@ function insert_text_area(){
 
 function delete_textarea(){     
     document.body.removeChild(event.target.parentNode); 
-    console.log("before : ")
-    console.log(textarea_array)
     for(var i=0 in textarea_array){ 
         if(textarea_array[i]==event.target.parentNode){ 
             console.log(textarea_array[i]); 
             textarea_array.splice(i,i+1); 
         }
     }
-    console.log("after : ")
-    console.log(textarea_array)  
 }

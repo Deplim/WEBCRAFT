@@ -123,8 +123,7 @@ function changeSelectionLocation(event){
             sel.modify('move', 'forward', "line");
             return 0;
         } else if (key == null){ // 마우스 입력
-            range.setStart(sel.anchorNode, sel.anchorOffset);
-            range.collapse(true);
+            return 0;
         } else if (key == 83){ // s 키 입력 
             highlight_mode(sel);     
         } else if(key == 46) { // delete 키 입려
@@ -231,6 +230,7 @@ function highlight_mode(sel){
 
 // highlight 함수 2 : 
 function delete_highlight(){
+	console.log("current target : ")
 	console.log(current_target);
 	document.body.removeChild(current_target);
 	for(var i=0 in highlight_array){
