@@ -84,7 +84,7 @@ function caret_update(event) {
     	+"<br>"
         + "relative:" + x + ", " + y + "<br>"
         + "browserHegith: " + Height);
-    console.log(x + "," + absoluteTop)
+    console.log(x + "," + absoluteTop);
 
     // 필요에 따라 스크롤 이동.
     if(Height-30 < y){ // 아래로

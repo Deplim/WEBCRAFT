@@ -105,6 +105,13 @@ function insert_text_area(){
         ta_delete.innerHTML=('x');
         ta_delete.addEventListener('click', delete_textarea);
         ta_delete.style="position: absolute; left: -25px; top: 2px; ";
+
+        // ta_delete class 속성 삽입.
+        var ta_delete_att = document.createAttribute("class");
+        ta_delete_att.value="ta_delete_class"
+        ta_delete.setAttributeNode(ta_delete_att);
+
+        // 버튼 삽입\
         div_area.appendChild(ta_delete);
 
         textarea_array.push(div_area);
@@ -112,12 +119,13 @@ function insert_text_area(){
     check=check+1;
 }
 
-function delete_textarea(){     
-    document.body.removeChild(event.target.parentNode); 
+function delete_textarea(e){
+    var node = (e || event).target;
     for(var i=0 in textarea_array){ 
-        if(textarea_array[i]==event.target.parentNode){ 
+        if(textarea_array[i]==node.parentNode){
             console.log(textarea_array[i]); 
             textarea_array.splice(i,i+1); 
         }
     }
+    document.body.removeChild(node.parentNode);
 }

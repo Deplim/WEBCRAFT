@@ -1,3 +1,6 @@
+// 지울거임
+var ta_delete_List;
+
 //필요 전역 변수
 var textarea_html_array=new Array()
 
@@ -24,6 +27,16 @@ function recieveURL(){
 	chrome.storage.sync.get("data", function(items) {
 		if (!chrome.runtime.error) {
 	    	document.getElementById('Element').innerHTML=items.data;
+
+			ta_delete_List=document.getElementsByClassName("ta_delete_class");
+
+			ta_delete_List[0].addEventListener("click", delete_text2);
+			// ta_delete_List[1].addEventListener("click", delete_textarea);
+			console.log(ta_delete_List[0].parentNode.parentNode);
+			// for(var i =0; i<ta_delete_List.length; i++){
+			// 	ta_delete_List[0].addEventListener("click", delete_textarea);
+			// 	console.log(ta_delete_List[i].parentNode);
+			// }
 		}
 	});
 }
@@ -43,5 +56,9 @@ function createURL() {
             console.log("Runtime error.");
         }
     });
+}
+function delete_text2(e) {
+	var node = (e || event).target;
+	document.getElementById("Element").removeChild(node.parentNode);
 }
 
