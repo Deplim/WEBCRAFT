@@ -1,3 +1,11 @@
+// 잠수시 뜰 이미지 변수
+var caret = document.createElement('img');
+// 이미지 변수에 src 속성 삽입.(이미지 주소)
+caret.src= "http://www.city.kr/files/attach/images/161/161/027/020/ad5d169730425190f67cd90fd661889e.gif";
+// 이미지 변수에 style 속성 삽입.
+caret.style="opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 900; width: 200px; height: 200px";
+
+
 // 얼만큼 미입력 상태일때 반응을 줄건지
 const time = 10;
 
@@ -17,6 +25,9 @@ document.addEventListener("click", update_old, false)
 // 시간 갱신, 캐릭터 안떠있는 상태라 설정해줌
 function update_old() {
     old = new Date();
+    // 반응시 캐릭터 삭제
+    document.body.removeChild(caret);
+
     appear = false;
 }
 
@@ -32,7 +43,9 @@ function PrintTime() {
 
     // time 초간 키보드, 마우스 클릭 없을시
     if(sec_gap > time && !appear){
-        alert("잠수?");
+        //이미지 태그를 실제 dom tree 에 달기.
+        document.body.appendChild(caret);
+
         appear = true; // 캐릭터 떠있는 상태라 설정해줌
     }
 
