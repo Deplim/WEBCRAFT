@@ -1,3 +1,6 @@
+function temp_f(){
+	console.log("temp check")
+}
 //필요 전역 변수
 var textarea_html_array=new Array()
 
@@ -17,8 +20,6 @@ rc_button.addEventListener('click', recieveURL);
 var space=document.createElement('p')
 space.id="Element";
 document.body.appendChild(space);
-
-
 
 function recieveURL(){
 	chrome.storage.sync.get("data", function(items) {
