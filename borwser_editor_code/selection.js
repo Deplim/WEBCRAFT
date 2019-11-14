@@ -201,7 +201,8 @@ function highlight_mode(sel){
 		var highlight = document.createElement('img');
 		highlight.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
 		highlight.style="opacity:0.5; position: absolute; top: "+absoluteTop+"px; left:"+x+"px; z-index: 901; width: 10px; height: 20px";
-		
+		highlight.class="highlight_class";
+
 		var highlight_onclick = document.createAttribute("onclick");
         highlight_onclick.value ="current_target=this;";
         highlight.setAttributeNode(highlight_onclick);
