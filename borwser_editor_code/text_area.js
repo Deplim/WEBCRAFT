@@ -86,6 +86,12 @@ function insert_text_area(){
         div_area_att2.value="position: absolute; left: "+absoluteLeft+"px; top: "+absoluteTop+"px; width: 100px; height: 100px;";
         div_area.setAttributeNode(div_area_att2);
 
+        // div class 속성 삽입.
+        var div_area_att3 = document.createAttribute("class");
+        div_area_att3.value="div_area_class"
+        div_area.setAttributeNode(div_area_att3);
+
+
         // div dom 트리에 달기
         document.body.appendChild(div_area);
 
@@ -127,5 +133,8 @@ function delete_textarea(e){
             textarea_array.splice(i,i+1); 
         }
     }
-    document.body.removeChild(node.parentNode);
+    // node.parentNode = div 태그
+    // node.parentNode.parentNode = Element 태그
+    node.parentNode.parentNode.removeChild(node.parentNode);
+    // document.body.removeChild(node.parentNode);
 }
