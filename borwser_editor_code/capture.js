@@ -3,7 +3,7 @@
 var cp_button = document.createElement('button');
 cp_button.innerHTML=("capture");
 cp_button.style="position: fixed; top: 30px; left: 200px;";
-cp_button.id="capture"
+cp_button.class="capture"
 document.body.appendChild(cp_button);
 
 $("#capture").on('click', function(e) {  //캡쳐 기능 활성화
@@ -123,12 +123,48 @@ $("#capture").on('click', function(e) {  //캡쳐 기능 활성화
       var capture = document.createElement('img');  
       capture.style="border: 1px solid blue; position: fixed; top: 0px; left: 0px;";
       capture.class="capture"
+      capture.setAttribute('draggable', true);
       capture.src = canvas.toDataURL("image/jpeg");
+  	  capture.onmousedown = function(event) {
+		  let shiftX = event.clientX - capture.getBoundingClientRect().left;
+		  let shiftY = event.clientY - capture.getBoundingClientRect().top;
+
+		  capture.style.position = 'absolute';
+		  capture.style.zIndex = 1000;
+		  document.body.append(capture);
+
+		  moveAt(event.pageX, event.pageY);
+
+		  // moves the ball at (pageX, pageY) coordinates
+		  // taking initial shifts into account
+		  function moveAt(pageX, pageY) {
+		    capture.style.left = pageX - shiftX + 'px';
+		    capture.style.top = pageY - shiftY + 'px';
+		  }
+
+		  function onMouseMove(event) {
+		    moveAt(event.pageX, event.pageY);
+		  }
+
+		  // move the ball on mousemove
+		  document.addEventListener('mousemove', onMouseMove);
+
+		  // drop the ball, remove unneeded handlers
+		  capture.onmouseup = function() {
+		    document.removeEventListener('mousemove', onMouseMove);
+		    capture.onmouseup = null;
+		  };
+      };
+
+	  capture.ondragstart = function() {
+	     return false;
+      };
       document.body.appendChild(capture);
     }
 
   }
 
 });
+
 
 
