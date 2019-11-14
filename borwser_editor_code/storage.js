@@ -1,3 +1,4 @@
+
 // 지울거임
 var ta_delete_List;
 
@@ -17,11 +18,20 @@ rc_button.style="position: fixed; top: 30px; left: 400px;";
 document.body.appendChild(rc_button);
 rc_button.addEventListener('click', recieveURL);
 
+var space=document.createElement('p')
+space.id="Element";
+document.body.appendChild(space);
+
+// // 페이지 로딩 완료시 함수 작동
+// window.onload = function () {
+// 	recieveURL(); // 로드
+// }
 
 function recieveURL(){
 	chrome.storage.sync.get("data", function(items) {
 		if (!chrome.runtime.error) {
-			document.body.innerHTML = document.body.innerHTML + items.data;
+			document.getElementById('Element').innerHTML= items.data;
+			// document.body.innerHTML = initHTML + items.data;
 
 			ta_delete_List=document.getElementsByClassName("ta_delete_class");
 
