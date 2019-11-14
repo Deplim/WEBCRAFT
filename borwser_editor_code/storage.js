@@ -17,16 +17,10 @@ rc_button.style="position: fixed; top: 30px; left: 400px;";
 document.body.appendChild(rc_button);
 rc_button.addEventListener('click', recieveURL);
 
-var space=document.createElement('p')
-space.id="Element";
-document.body.appendChild(space);
-
-
 
 function recieveURL(){
 	chrome.storage.sync.get("data", function(items) {
 		if (!chrome.runtime.error) {
-	    	// document.getElementById('Element').innerHTML= items.data;
 			document.body.innerHTML = document.body.innerHTML + items.data;
 
 			ta_delete_List=document.getElementsByClassName("ta_delete_class");
