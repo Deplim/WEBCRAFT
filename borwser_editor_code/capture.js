@@ -120,11 +120,11 @@ $("#capture").on('click', function(e) {  //캡쳐 기능 활성화
       return navigator.msSaveBlob(blob, '파일명.jpg'); 
 
     } else { 
-
-      var el = document.getElementById("target");
-
-      el.src = canvas.toDataURL("image/jpeg");
-
+      var capture = document.createElement('img');  
+      capture.style="border: 1px solid blue; position: fixed; top: 0px; left: 0px;";
+      capture.class="capture"
+      capture.src = canvas.toDataURL("image/jpeg");
+      document.body.appendChild(capture);
     }
 
   }
