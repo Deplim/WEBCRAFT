@@ -2,7 +2,10 @@
 
 var cp_button = document.createElement('button');
 cp_button.innerHTML=("capture");
-cp_button.style="position: fixed; top: 30px; left: 200px;";
+//디자인 추가
+cp_button.id="captureButton";
+cp_button.style="position: fixed; bottom: 10px; right: 80px;";
+
 cp_button.class="capture"
 document.body.appendChild(cp_button);
 
