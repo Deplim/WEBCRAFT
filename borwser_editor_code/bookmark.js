@@ -56,8 +56,10 @@ function bookMark(){
 
     var jbBook = document.createElement('img');
 
-    jbBook.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/book.png?raw=true";//--
-    jbBook.style = "opacity:0.5; position: absolute; z-index: 999; width: 20px; height: 20px";
+    //북마크 이미지 수정
+    jbBook.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/bookMark.png?raw=true";//--
+    //투명도 0.5->0.7로 수정, 폭 20px->15px로 수정
+    jbBook.style = "opacity:0.7; position: absolute; z-index: 999; width: 15px; height: 20px";
 
     jbBook.style.top = String(absoluteTop) + "px";
     jbBook.style.left = String(x) + "px";
@@ -82,8 +84,8 @@ function BookPageDelete(arrayLocation){
     
     var jbBook = document.createElement('img');
 
-    jbBook.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/book.png?raw=true";//--
-    jbBook.style = "opacity:0.5; position: absolute; z-index: 999; width: 20px; height: 20px";
+    jbBook.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/bookMark.png?raw=true";//--
+    jbBook.style = "opacity:0.7; position: absolute; z-index: 999; width: 15px; height: 20px";
 
     jbBook.style.top = String(absoluteTop) + "px";
     jbBook.style.left = String(x) + "px";
