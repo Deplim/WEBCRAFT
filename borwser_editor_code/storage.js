@@ -7,13 +7,18 @@ var textarea_html_array=new Array()
 //필요 element 생성
 var st_button = document.createElement('button');
 st_button.innerHTML=("storage");
-st_button.style="position: fixed; top: 5px; left: 400px;";
+//디자인 관련
+st_button.id="saveButton";
+st_button.style="position: fixed; bottom: 40px; right: 10px;";
+
 document.body.appendChild(st_button);
 st_button.addEventListener('click', createURL);
 
 var rc_button = document.createElement('button');
 rc_button.innerHTML=("recieve");
-rc_button.style="position: fixed; top: 30px; left: 400px;";
+//디자인 관련
+rc_button.id="recieveButton";
+rc_button.style="position: fixed; bottom: 10px; right: 10px;";
 document.body.appendChild(rc_button);
 rc_button.addEventListener('click', recieveURL);
 
