@@ -200,7 +200,7 @@ function highlight_mode(sel){
 
     if(highlight_mode_on==1){
 		var highlight = document.createElement('img');
-		highlight.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
+		highlight.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/1234.png?raw=true";
 		highlight.style="opacity:0.5; position: absolute; top: "+absoluteTop+"px; left:"+x+"px; z-index: 901; width: 10px; height: 20px";
 		
 		var highlight_onclick = document.createAttribute("onclick");
