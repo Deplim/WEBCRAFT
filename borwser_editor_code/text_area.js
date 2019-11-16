@@ -5,11 +5,14 @@ var textarea_array=new Array();
 // text area mode 를 실행할 버튼 태그 생성.
 var ta_button = document.createElement('button');
 
+// 버튼에 id 속성 삽입 
+ta_button.id="textButton";
+
 //버튼 이름.
 ta_button.innerHTML=("textarea_mode(off)");
 
 // 버튼에 style 속성 삽입. 
-ta_button.style="position: fixed; top: 5px; left: 200px;";
+ta_button.style="position: fixed; bottom: 10px; right: 150px;";
 
 // 버튼 태그 dom 트리에 달기 
 document.body.appendChild(ta_button);
@@ -94,6 +97,9 @@ function insert_text_area(){
         var text_area = document.createElement('textarea');
    		// 텍스트 박스 안에 디폴트로 들어가 문자.
         text_area.innerHTML=('input text here :)')
+	    // 버튼에 id 속성 삽입 
+        text_area.id="textArea";
+	    
         // 텍스트 박스에 style 속성 삽입.
         text_area.style="opacity:0.75; font-weight:600; position: absolute; left: 0px; top: 0px; width: 100px; height: 100px;";
         // 텍스트 박스 트리에 달기.
@@ -103,6 +109,8 @@ function insert_text_area(){
         // 텍스트 삭제 버튼 삽입. 형식은 위와 같음.
         var ta_delete = document.createElement('button');
         ta_delete.innerHTML=('x');
+	    // 버튼에 id 속성 삽입 
+        ta_delete.id="textDelete";
         ta_delete.addEventListener('click', delete_textarea);
         ta_delete.style="position: absolute; left: -25px; top: 2px; ";
         div_area.appendChild(ta_delete);
