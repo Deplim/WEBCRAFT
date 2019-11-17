@@ -1,13 +1,14 @@
 //B:북마크 추가 , V:북마크 삭제 , N:북마크위로 , M:북마크 아래로
 
-//북마크가 삽입된 좌표를 배열로 만들기 
+//북마크가 삽입된 좌표를 배열로 만들기
 var bookMarkArrayX = new Array();//x좌표
 var bookMarkArrayY = new Array();//y좌표
+var jbBook_array = new Array(); // 북마크 저장하는 배열
 
 
 arrayLocation=-1; // 페이지 업 다운 관련 , 북마크 배열의 갯수와 현재 위치
 
-//클릭과 버튼에 반응하기. 
+//클릭과 버튼에 반응하기.
 document.addEventListener("keydown", bookmark_reaction, false)
 
 
@@ -26,7 +27,7 @@ function bookmark_reaction(event){
             console.log(arrayLocation+ "##Before arrayLocation###");
             //console.log(nodeCounter.length+ "##Before nodeCounter.length###");
             window.scrollTo(bookMarkArrayX[arrayLocation],bookMarkArrayY[arrayLocation]);
- 
+
          }
         else if(key==86){//v입력시
             BookPageDelete(arrayLocation);
@@ -48,9 +49,6 @@ function bookmark_reaction(event){
 }
 
 
-    
-
-
 //북마크 새로 또 만드는 함수
 function bookMark(){
 
@@ -64,44 +62,41 @@ function bookMark(){
     jbBook.style.top = String(absoluteTop) + "px";
     jbBook.style.left = String(x) + "px";
 
+    // jbBook class 속성 삽입.
+    var jbBook_att = document.createAttribute("class");
+    jbBook_att.value="jbBook_class";
+    jbBook.setAttributeNode(jbBook_att);
 
     //배열에 추가
     bookMarkArrayY.push(String(absoluteTop));
     bookMarkArrayX.push(String(x));
 
-
     //배열의 인덱스 +1;
-    arrayLocation = arrayLocation+1;    
+    arrayLocation = arrayLocation+1;
 
     //노드에 앞부분 순서대로 arrayLocation 인덱스로 북마크 넣기
-    document.body.insertBefore(jbBook,document.body.childNodes[arrayLocation])
-        
+    document.body.insertBefore(jbBook,document.body.childNodes[arrayLocation]);
+
+    // 저장할 배열에 jbBook 저장, 추후 수정해야함
+    jbBook_array.push(jbBook);
+
     return arrayLocation;
-    
+
 }
 
 function BookPageDelete(arrayLocation){
-    
-    var jbBook = document.createElement('img');
-
-    jbBook.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/bookMark.png?raw=true";//--
-    jbBook.style = "opacity:0.7; position: absolute; z-index: 999; width: 15px; height: 20px";
-
-    jbBook.style.top = String(absoluteTop) + "px";
-    jbBook.style.left = String(x) + "px";
-
 
     //널이 아니면 삭제 진행
     if(bookMarkArrayX[arrayLocation]=!null){
 
         //arrayLocation위치 인덱스 삭제
         document.body.removeChild(document.body.childNodes[arrayLocation]);
-        
-        //현재 배열 제거 
+
+        //현재 배열 제거
         bookMarkArrayX.splice(arrayLocation,1);
         bookMarkArrayY.splice(arrayLocation,1);
         console.log(arrayLocation+"-> delete");
-    
+
         return arrayLocation;
     }
     else if(bookMarkArrayX[arrayLocation]==null){
@@ -124,8 +119,8 @@ function BookPageUpDown(key,arrayLocation){
     if(key==78){//아스키 N입력 시
         //이전 북마크로 커서가 이동하도록!
         //console.log(i2+" +VALUE i+");
-        
-        if(arrayLocation>=0){//배열이 첫번째가 아니면    
+
+        if(arrayLocation>=0){//배열이 첫번째가 아니면
             //console.log("-----------Up Movit!-----------");
             if(arrayLocation==0){
                 console.log("It's First!");
@@ -135,7 +130,7 @@ function BookPageUpDown(key,arrayLocation){
             arrayLocation = arrayLocation-1;
             return arrayLocation;
         }
-        
+
     }
 
     else{//M입력시
@@ -148,7 +143,7 @@ function BookPageUpDown(key,arrayLocation){
             //console.log("-----------Down Movit!-----------");
             //if(i2>i){
                 //console.log("-> i2 > i");
-            //    return i2;   
+            //    return i2;
             //}
            // else{
             //console.log("It's Last!");
