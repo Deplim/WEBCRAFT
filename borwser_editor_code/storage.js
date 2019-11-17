@@ -1,6 +1,3 @@
-function temp_f(){
-	console.log("temp check")
-}
 //필요 전역 변수
 var textarea_html_array=new Array()
 
