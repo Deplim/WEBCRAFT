@@ -20,7 +20,7 @@ var highlight_array=new Array()
 var caret = document.createElement('img');
 
 // 캐럿에 src 속성 삽입.
-caret.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
+caret.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/%EB%8F%84%EA%B5%AC/1234.png?raw=true";
 
 // 캐럿에 style 속성 삽입.
 caret.style="opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 900; width: 10px; height: 20px";
