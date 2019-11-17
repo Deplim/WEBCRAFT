@@ -2,7 +2,7 @@
 // 1. text_area 저장 - 구현 O
 // 2. highlight 저장 - 구현 O
 // 3. text_area 로드 - 구현 O
-// 4. highlight 로드 - 구현 X
+// 4. highlight 로드 - 구현 O
 
 // 저장 할때 쓰는 배열 1. text_area 2. highlight 정보 저장
 var storage_html_array=new Array()
@@ -29,21 +29,28 @@ function recieveURL(){
 		if (!chrome.runtime.error) {
 			document.getElementById('Element').innerHTML= items.data;
 
+			// 불러온 태그들 다시 저장 할때 사용하는 배열에 집어넣어줌
 			// textarea 담긴 태그 찾아줌(div)
 			var div_area_List=document.getElementsByClassName("div_area_class");
-			for(var i =0; i<div_area_List.length; i++){
-				// textarea_array에 값 넣어줘야함;
+			for(var i = 0; i<div_area_List.length; i++){
+				// textarea_array에 불러온 값 넣어줌
 				textarea_array.push(div_area_List[i]);
 			}
 
+			// highlight 태그 찾아줌
+			var highlight_List = document.getElementsByClassName("highlight_class");
+			for(var i = 0; i<highlight_List.length; i++){
+				// highlight_array에 불러온 값 넣어줌
+				highlight_array.push([highlight_List[i], null]);
+			}
+
+			// 불러온 태그에 addEventListener 연결
 			// x 버튼 태그들 찾아줌
 			var ta_delete_List=document.getElementsByClassName("ta_delete_class");
-			for(var i =0; i<ta_delete_List.length; i++){
+			for(var i = 0; i<ta_delete_List.length; i++){
 				// 삭제 함수 연결
 				ta_delete_List[i].addEventListener("click", delete_textarea);
 			}
-
-
 		}
 	});
 }
@@ -51,11 +58,14 @@ function recieveURL(){
 function createURL() {
 	// textarea_array 는 text_area.js 에 있는 변수임
 	// highlight_array 는 selection.js 에 있는 변수임
+
+	// text_array 저장
 	for(var i=0 in textarea_array){
 		var temp=textarea_array[i].getElementsByTagName("TEXTAREA");
 		temp[0].innerHTML=temp[0].value;
 		storage_html_array.push(textarea_array[i].outerHTML);
 	}
+	// highlight 저장
 	for(var i=0 in highlight_array){
 		storage_html_array.push(highlight_array[i][0].outerHTML);
 	}

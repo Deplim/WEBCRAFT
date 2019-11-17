@@ -201,7 +201,11 @@ function highlight_mode(sel){
 		var highlight = document.createElement('img');
 		highlight.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/123.PNG?raw=true";
 		highlight.style="opacity:0.5; position: absolute; top: "+absoluteTop+"px; left:"+x+"px; z-index: 901; width: 10px; height: 20px";
-		highlight.class="highlight_class";
+
+        // highlight class 속성 삽입.
+        var highlight_att = document.createAttribute("class");
+        highlight_att.value="highlight_class"
+        highlight.setAttributeNode(highlight_att);
 
 		var highlight_onclick = document.createAttribute("onclick");
         highlight_onclick.value ="current_target=this;";
@@ -210,8 +214,10 @@ function highlight_mode(sel){
 		document.body.appendChild(highlight);
 		
 		old_x=x;
-		old_offset=sel.anchorOffset
+		old_offset=sel.anchorOffset;
 		current_highlight=highlight;
+
+        console.log("cur:" + current_highlight);
 
 		range.setStart(sel.anchorNode, sel.anchorOffset);
         range.setEnd(sel.focusNode , sel.focusOffset); 
@@ -223,7 +229,9 @@ function highlight_mode(sel){
         range.setEnd(sel.focusNode , sel.focusOffset+1); 
         sel.removeAllRanges();
         sel.addRange(range);
-        highlight_array.push([current_highlight,sel.toString()])
+        highlight_array.push([current_highlight,sel.toString()]);
+        console.log("sel: "+sel.toString());
+
         range.setStart(sel.anchorNode, temp_offset);
         range.collapse(true);
     }
