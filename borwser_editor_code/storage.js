@@ -4,9 +4,6 @@
 // 3. text_area 로드 - 구현 O
 // 4. highlight 로드 - 구현 O
 
-// 저장 할때 쓰는 배열 1. text_area 2. highlight 정보 저장
-var storage_html_array=new Array()
-
 //필요 element 생성
 var st_button = document.createElement('button');
 st_button.innerHTML=("storage");
@@ -41,7 +38,7 @@ function recieveURL(){
 			// highlight 태그 찾아줌
 			var highlight_List = document.getElementsByClassName("highlight_class");
 			for(var i = 0; i<highlight_List.length; i++){
-				// highlight_array에 불러온 값 넣어줌
+				// highlight_array에 불러온 값 넣어줌, 두번째 배열 값에 하이라이트된 부분 문자열 넣어줘야함
 				highlight_array.push([highlight_List[i], null]);
 			}
 
@@ -59,6 +56,13 @@ function recieveURL(){
 				// 삭제 함수 연결
 				ta_delete_List[i].addEventListener("click", delete_textarea);
 			}
+
+			// jbBook 노드 위치 설정
+			for(var i = 0; i<jbBook_List.length; i++){
+				arrayLocation++; // 북마크 순서 bookmark.js 참조
+				document.body.insertBefore(jbBook_List[i],document.body.childNodes[i]);
+			}
+
 		}
 	});
 }
@@ -67,6 +71,10 @@ function createURL() {
 	// textarea_array 는 text_area.js 에 있는 변수임
 	// highlight_array 는 selection.js 에 있는 변수임
 
+	// 저장 할때 쓰는 배열 1. text_area 2. highlight 3. bookmark 정보 저장
+	// 저장전 이전 저장 값 초기화, storage_html_array 초기화
+	var storage_html_array=new Array();
+	
 	// text_array 저장
 	for(var i=0 in textarea_array){
 		var temp=textarea_array[i].getElementsByTagName("TEXTAREA");
