@@ -29,6 +29,7 @@ function recieveURL(){
 		if (!chrome.runtime.error) {
 			document.getElementById('Element').innerHTML= items.data;
 
+
 			// 불러온 태그들 다시 저장 할때 사용하는 배열에 집어넣어줌
 			// textarea 담긴 태그 찾아줌(div)
 			var div_area_List=document.getElementsByClassName("div_area_class");
@@ -42,6 +43,13 @@ function recieveURL(){
 			for(var i = 0; i<highlight_List.length; i++){
 				// highlight_array에 불러온 값 넣어줌
 				highlight_array.push([highlight_List[i], null]);
+			}
+
+			// bookmark 태그 찾아줌
+			var jbBook_List = document.getElementsByClassName("jbBook_class");
+			for(var i = 0; i<jbBook_List.length; i++){
+				// jbBook_array에 불러온 값 넣어줌
+				jbBook_array.push((jbBook_List[i]));
 			}
 
 			// 불러온 태그에 addEventListener 연결
@@ -68,6 +76,10 @@ function createURL() {
 	// highlight 저장
 	for(var i=0 in highlight_array){
 		storage_html_array.push(highlight_array[i][0].outerHTML);
+	}
+	// bookmark 저장
+	for(var i=0 in jbBook_array){
+		storage_html_array.push(jbBook_array[i].outerHTML);
 	}
 
     chrome.storage.sync.set({ "data" : storage_html_array }, function() {
