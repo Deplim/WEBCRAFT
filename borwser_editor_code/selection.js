@@ -192,9 +192,7 @@ function highlight_mode(sel){
         highlight_att.value="highlight_class";
         highlight.setAttributeNode(highlight_att);
 
-		var highlight_onclick = document.createAttribute("onclick");
-        highlight_onclick.value ="current_target=this;";
-        highlight.setAttributeNode(highlight_onclick);
+		highlight.addEventListener('click', highlight_target);
 
 		document.body.appendChild(highlight);
 
@@ -222,7 +220,12 @@ function highlight_mode(sel){
     }
 };
 
-// highlight 함수 2 :
+// highlight 함수 1 :
+function highlight_target(){
+	current_target=event.target;
+}
+
+// highlight 함수 3 :
 function delete_highlight(){
 	console.log("current target : ");
 	console.log(current_target);
@@ -234,7 +237,7 @@ function delete_highlight(){
 	}
 }
 
-// hightlight 함수 3 :
+// hightlight 함수 4 :
 function translator(){
 	for(var i=0 in highlight_array){
 		if(highlight_array[i][0]==current_target){
