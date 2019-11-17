@@ -3,6 +3,7 @@
 //북마크가 삽입된 좌표를 배열로 만들기 
 var bookMarkArrayX = new Array();//x좌표
 var bookMarkArrayY = new Array();//y좌표
+var jbBook_array = new Array(); // 북마크 저장하는 배열
 
 
 arrayLocation=-1; // 페이지 업 다운 관련 , 북마크 배열의 갯수와 현재 위치
@@ -48,9 +49,6 @@ function bookmark_reaction(event){
 }
 
 
-    
-
-
 //북마크 새로 또 만드는 함수
 function bookMark(){
 
@@ -62,32 +60,29 @@ function bookMark(){
     jbBook.style.top = String(absoluteTop) + "px";
     jbBook.style.left = String(x) + "px";
 
+    // jbBook class 속성 삽입.
+    var jbBook_att = document.createAttribute("class");
+    jbBook_att.value="jbBook_class";
+    jbBook.setAttributeNode(jbBook_att);
 
     //배열에 추가
     bookMarkArrayY.push(String(absoluteTop));
     bookMarkArrayX.push(String(x));
 
-
     //배열의 인덱스 +1;
     arrayLocation = arrayLocation+1;    
 
     //노드에 앞부분 순서대로 arrayLocation 인덱스로 북마크 넣기
-    document.body.insertBefore(jbBook,document.body.childNodes[arrayLocation])
-        
+    document.body.insertBefore(jbBook,document.body.childNodes[arrayLocation]);
+
+    // 저장할 배열에 jbBook 저장, 추후 수정해야함
+    jbBook_array.push(jbBook);
+
     return arrayLocation;
     
 }
 
 function BookPageDelete(arrayLocation){
-    
-    var jbBook = document.createElement('img');
-
-    jbBook.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/book.png?raw=true";//--
-    jbBook.style = "opacity:0.5; position: absolute; z-index: 999; width: 20px; height: 20px";
-
-    jbBook.style.top = String(absoluteTop) + "px";
-    jbBook.style.left = String(x) + "px";
-
 
     //널이 아니면 삭제 진행
     if(bookMarkArrayX[arrayLocation]=!null){
