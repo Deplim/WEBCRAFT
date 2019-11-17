@@ -54,7 +54,7 @@ function bookMark(){
 
     var jbBook = document.createElement('img');
 
-    jbBook.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/img/book.png?raw=true";//--
+    jbBook.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/%EB%8F%84%EA%B5%AC/book.png?raw=true";//--
     jbBook.style = "opacity:0.5; position: absolute; z-index: 999; width: 20px; height: 20px";
 
     jbBook.style.top = String(absoluteTop) + "px";
