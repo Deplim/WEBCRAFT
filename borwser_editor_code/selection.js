@@ -204,7 +204,7 @@ function highlight_mode(sel){
 
         // highlight class 속성 삽입.
         var highlight_att = document.createAttribute("class");
-        highlight_att.value="highlight_class"
+        highlight_att.value="highlight_class";
         highlight.setAttributeNode(highlight_att);
 
 		var highlight_onclick = document.createAttribute("onclick");
