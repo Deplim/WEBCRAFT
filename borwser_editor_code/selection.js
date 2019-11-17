@@ -29,16 +29,6 @@ caret.style="opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 900;
 //캐럿 태그를 실제 dom tree 에 달기.
 document.body.appendChild(caret);
 
-
-// 캐럿 상태표시기 태그 생성
-var caret_state = document.createElement('div');
-// 캐럿 상태표시기 id 속성 삽입. 
-caret_state.id="caret_state";
-// 캐럿 상태표시기 style 속성 삽입. 
-caret_state.style="position:fixed; top: 5px; left: 530px; z-index: 999; background-color : green;";
-// 캐럿 상태표시기 dom 트리에 달기 
-document.body.appendChild(caret_state);
-
 // << Element 삽입 영역 끝. >>
 
 //클릭과 버튼에 반응하기. 
@@ -80,11 +70,6 @@ function caret_update(event) {
     // y 절대 좌표
     absoluteTop = scrolledTopLength + y; 
 
-    // 사용자가 볼 수 있도록 커널창과 화면에 캐럿 상태 표시.
-    document.getElementById("caret_state").innerHTML = ("Coordinates :"+ x + ", " + absoluteTop
-    	+"<br>"
-        + "relative:" + x + ", " + y + "<br>"
-        + "browserHegith: " + Height);
     console.log(x + "," + absoluteTop)
 
     // 필요에 따라 스크롤 이동.

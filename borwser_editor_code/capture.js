@@ -4,12 +4,11 @@ var cp_button = document.createElement('button');
 cp_button.innerHTML=("capture");
 //디자인 추가
 cp_button.id="captureButton";
-cp_button.style="position: fixed; bottom: 10px; right: 80px;";
+cp_button.style="position: fixed; bottom: 10px; right: 90px;";
 
-cp_button.class="capture"
 document.body.appendChild(cp_button);
 
-$("#capture").on('click', function(e) {  //캡쳐 기능 활성화
+$("#captureButton").on('click', function(e) {  //캡쳐 기능 활성화
   console.log("capture start");
   var height = window.innerHeight;
 

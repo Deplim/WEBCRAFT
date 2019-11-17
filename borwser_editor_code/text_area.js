@@ -12,7 +12,7 @@ ta_button.id="textButton";
 ta_button.innerHTML=("textarea_mode(off)");
 
 // 버튼에 style 속성 삽입. 
-ta_button.style="position: fixed; bottom: 10px; right: 150px;";
+ta_button.style="position: fixed; bottom: 10px; right: 160px;";
 
 // 버튼 태그 dom 트리에 달기 
 document.body.appendChild(ta_button);

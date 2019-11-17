@@ -15,7 +15,7 @@ document.body.appendChild(st_button);
 st_button.addEventListener('click', createURL);
 
 var rc_button = document.createElement('button');
-rc_button.innerHTML=("recieve");
+rc_button.innerHTML=("character");
 //디자인 관련
 rc_button.id="recieveButton";
 rc_button.style="position: fixed; bottom: 10px; right: 10px;";
