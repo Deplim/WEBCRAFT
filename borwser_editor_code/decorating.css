@@ -1,38 +1,42 @@
 /*버튼과 textarea 관련 css*/
 #textButton{
-            background-color: white;
-            color : #ff7f00;
-            border: 3px solid #ff7f00;
-            border-radius: 10px;
+        background-color: white;
+        color : #ff7f00;
+        border: 3px solid #ff7f00;
+        border-radius: 10px;
+        font-size:15px;
     }
-    #captureButton{
-            background-color: white;
-            color : #81c147;
-            border: 3px solid #81c147;
-            border-radius: 10px;
-    }
-    #saveButton{
-            background-color: white;
-            color : #50bcdf;
-            border: 3px solid #50bcdf;
-            border-radius: 10px;
-    }
-    #recieveButton{
-            background-color: white;
-            color : #BF00FF;
-            border: 3px solid #BF00FF;
-            border-radius: 10px;
-    }
-    #textArea{
-            background-color: white;
-            color : black;
-            border: 2px solid #ff7f00;
-    }
-    #textDelete{
-            background-color: white;
-            color : #ff7f00;
-            border: 2px solid #ff7f00;
-    }
+#captureButton{
+        background-color: white;
+        color : #81c147;
+        border: 3px solid #81c147;
+        border-radius: 10px;
+        font-size:15px;
+}
+#saveButton{
+        background-color: white;
+        color : #50bcdf;
+        border: 3px solid #50bcdf;
+        border-radius: 10px;
+        font-size:15px;
+}
+#recieveButton{
+        background-color: white;
+        color : #BF00FF;
+        border: 3px solid #BF00FF;
+        border-radius: 10px;
+        font-size:15px;
+}
+#textArea{
+        background-color: white;
+        color : black;
+        border: 2px solid #ff7f00;
+}
+#textDelete{
+        background-color: white;
+        color : #ff7f00;
+        border: 2px solid #ff7f00;
+}
 
 /*capture 관련 css*/
 #screenshot_mask {
