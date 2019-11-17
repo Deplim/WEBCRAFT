@@ -113,7 +113,7 @@ function changeSelectionLocation(event){
             highlight_mode(sel);
         } else if(key == 46) { // delete 키 입려
         	delete_highlight();
-        } else if(key == 84){
+        } else if(key == 84){ // t 입력
         	translator();
         } else {
             console.log("Nothing command"); }
@@ -242,7 +242,7 @@ function translator(){
 			var target = current_target; // 요소의 id 값이 target이라 가정
 			var clientRect = target.getBoundingClientRect(); // DomRect 구하기 (각종 좌표값이 들어있는 객체)
 			var relativeTop = clientRect.top; // Viewport의 시작지점을 기준으로한 상대좌표 Y 값.		​
-			var relativeLeft= clientRect.Left;
+			var relativeLeft= clientRect.left;
 			var scrolledTopLength = window.pageYOffset; // 스크롤된 길이
 			var absoluteTop = scrolledTopLength + relativeTop; // 절대좌표
 
@@ -257,6 +257,11 @@ function translator(){
 			};
 			jsonSend(test, relativeLeft, absoluteTop+8);
 		}
+		else{
+		    console.log("highlight_array[i][0]!=current_target)");
+            console.log("highlight_array[i][0]: " + highlight_array[i][0]);
+            console.log("current_target: " + current_target);
+        }
 	}
 }
 
