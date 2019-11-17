@@ -8,7 +8,8 @@
       "matches": [
         "<all_urls>"
       ],
-      "js": [ "text_area.js", "storage.js", "bookmark.js", "selection.js" ]
+      "js": [ "text_area.js", "storage.js", "bookmark.js", "selection.js", "capture.js", "library/es6-promise.min.js", "library/es6-promise.min.js"],
+      "css": ["cweb.css"]
     }
   ]
 }
