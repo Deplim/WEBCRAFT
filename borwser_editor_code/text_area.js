@@ -88,7 +88,7 @@ function insert_text_area(){
 
         // div class 속성 삽입.
         var div_area_att3 = document.createAttribute("class");
-        div_area_att3.value="div_area_class"
+        div_area_att3.value="div_area_class";
         div_area.setAttributeNode(div_area_att3);
 
 
