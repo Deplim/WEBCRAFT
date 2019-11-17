@@ -9,7 +9,10 @@
         "<all_urls>"
       ],
       "js": [ "text_area.js", "storage.js", "bookmark.js", "selection.js", "capture.js", "library/es6-promise.min.js", "library/html2canvas.min.js"],
-      "css": ["cweb.css"]
+      "css": ["decorating.css"]
     }
-  ]
+  ],
+  "browser_action": {
+  "default_icon": "webcraft_icon.png"
+}
 }
