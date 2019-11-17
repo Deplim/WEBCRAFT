@@ -24,7 +24,11 @@ window.onload = function () {
 function recieveURL(){
 	chrome.storage.sync.get("data", function(items) {
 		if (!chrome.runtime.error) {
-			document.getElementById('Element').innerHTML= items.data;
+
+			// 비어 있다면 Element 태그 내에 아무것도 안넣음
+			if(items.data == null){}
+			else
+				document.getElementById('Element').innerHTML= items.data;
 
 
 			// 불러온 태그들 다시 저장 할때 사용하는 배열에 집어넣어줌
