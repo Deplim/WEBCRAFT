@@ -124,7 +124,7 @@ $("#captureButton").on('click', function(e) {  //캡쳐 기능 활성화
     } else { 
       var capture = document.createElement('img');  
       capture.style="border: 1px solid blue; position: fixed; top: 0px; left: 0px;";
-      capture.class="capture"
+      capture.class="capture";
       capture.setAttribute('draggable', true);
       capture.src = canvas.toDataURL("image/jpeg");
   	  capture.onmousedown = function(event) {

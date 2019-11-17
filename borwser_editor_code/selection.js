@@ -11,7 +11,7 @@ var absoluteTop=0;
 var highlight_mode_on=0;
 var current_highlight=0;
 var current_target=0;
-var highlight_array=new Array()
+var highlight_array=new Array();
 
 
 // << Element 삽입 영역 시작. >>
@@ -31,8 +31,8 @@ document.body.appendChild(caret);
 // << Element 삽입 영역 끝. >>
 
 //클릭과 버튼에 반응하기.
-document.addEventListener("click", caret_update, false)
-document.addEventListener("keydown", caret_update, false)
+document.addEventListener("click", caret_update, false);
+document.addEventListener("keydown", caret_update, false);
 
 //키보드 스크롤 막기
 jQuery(document).keydown(function(e)
@@ -69,7 +69,7 @@ function caret_update(event) {
     // y 절대 좌표
     absoluteTop = scrolledTopLength + y;
 
-    console.log(x + "," + absoluteTop)
+    console.log(x + "," + absoluteTop);
 
     // 필요에 따라 스크롤 이동.
     if(Height-30 < y){ // 아래로
@@ -224,7 +224,7 @@ function highlight_mode(sel){
 
 // highlight 함수 2 :
 function delete_highlight(){
-	console.log("current target : ")
+	console.log("current target : ");
 	console.log(current_target);
 	document.body.removeChild(current_target);
 	for(var i=0 in highlight_array){
@@ -248,8 +248,8 @@ function translator(){
 
 
 			//번역기에 넘기기
-			console.log("content :")
-			console.log(highlight_array[i][1])
+			console.log("content :");
+			console.log(highlight_array[i][1]);
 			var test = {
 				"original_str" : highlight_array[i][1],
 				"original_language" : "en",
@@ -272,13 +272,13 @@ function jsonSend(test,left,top) {
 			var resulut_obj = JSON.parse(data);
 			//결과값을 textarea에 넣기 위해서
 			console.log("translactor result : ");
-			console.log(resulut_obj.message.result.translatedText)
+			console.log(resulut_obj.message.result.translatedText);
 			var caret = document.createElement('img');
 
 			// 번역 결과 삽입.
 			var tran_result = document.createElement('p');
 			tran_result.style="font-size:9px; font-weight:700; opacity:0.5; position: absolute; top: "+top+"px; left: "+left+"px; z-index: 899; height: 15px";
-			tran_result.innerHTML=resulut_obj.message.result.translatedText
+			tran_result.innerHTML=resulut_obj.message.result.translatedText;
 			document.body.appendChild(tran_result);
 		},
 		error : function(e) {

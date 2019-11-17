@@ -102,7 +102,7 @@ function insert_text_area(){
         // 텍스트 박스 테그 생성. 
         var text_area = document.createElement('textarea');
    		// 텍스트 박스 안에 디폴트로 들어가 문자.
-        text_area.innerHTML=('input text here :)')
+        text_area.innerHTML=('input text here :)');
 	    // 버튼에 id 속성 삽입 
         text_area.id="textArea";
 	    
@@ -122,7 +122,7 @@ function insert_text_area(){
 
         // ta_delete class 속성 삽입.
         var ta_delete_att = document.createAttribute("class");
-        ta_delete_att.value="ta_delete_class"
+        ta_delete_att.value="ta_delete_class";
         ta_delete.setAttributeNode(ta_delete_att);
 
         // 버튼 삽입\
