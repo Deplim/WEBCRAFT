@@ -29,11 +29,13 @@ public class NMTTestServlet extends HttpServlet {
         System.out.println("NMTTestServlet doPost 메소드가 실행되었습니다.");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
-        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+//        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+//        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+        response.setHeader("Access-Control-Allow-Headers", "origin, Content-Type, Accept, X-Requested-With");
 
         //번역할 text 값을 받아 옵니다
         String original_str = (String)request.getParameter("original_str");
