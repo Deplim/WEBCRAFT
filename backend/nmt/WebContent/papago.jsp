@@ -26,8 +26,8 @@
 		//번역할 object를 생성
 		var test = {
 			"original_str" : $("#send_text").val(),
-			"original_language" : "ko",
-			"change_language" : "en"
+			"original_language" : "en",
+			"change_language" : "ko"
 		};
 		jsonSend(test);
 	});

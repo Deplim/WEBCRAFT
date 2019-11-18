@@ -24,7 +24,7 @@ public class NMTTestServlet extends HttpServlet {
     public NMTTestServlet() {
 // TODO Auto-generated constructor stub
     }
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("NMTTestServlet doPost 메소드가 실행되었습니다.");
         request.setCharacterEncoding("UTF-8");
@@ -62,7 +62,7 @@ public class NMTTestServlet extends HttpServlet {
             String text = URLEncoder.encode(original_str, "UTF-8");
             String ori_language = URLEncoder.encode(original_language, "UTF-8");
             String cha_language = URLEncoder.encode(change_language, "UTF-8");
-            
+
             String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
