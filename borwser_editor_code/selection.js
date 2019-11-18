@@ -272,7 +272,7 @@ function translator(){
 function jsonSend(test,left,top) {
 	$.ajax({
 		type : "POST",
-		url : "http://34.84.8.215:8080/nmt/NMTTestServlet",
+		url : "https://www.junior-programmer.com/nmt/NMTTestServlet",
 		//url : "http://localhost:8080/nmt/NMTTestServlet",
 		data : test, //json을 보내는 방법
 		success : function(data) { //서블렛을 통한 결과 값을 받을 수 있습니다.
