@@ -24,16 +24,18 @@ public class NMTTestServlet extends HttpServlet {
     public NMTTestServlet() {
 // TODO Auto-generated constructor stub
     }
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("NMTTestServlet doPost 메소드가 실행되었습니다.");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
-        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+//        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+//        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+        response.setHeader("Access-Control-Allow-Headers", "origin, Content-Type, Accept, X-Requested-With");
 
         //번역할 text 값을 받아 옵니다
         String original_str = (String)request.getParameter("original_str");
@@ -62,7 +64,7 @@ public class NMTTestServlet extends HttpServlet {
             String text = URLEncoder.encode(original_str, "UTF-8");
             String ori_language = URLEncoder.encode(original_language, "UTF-8");
             String cha_language = URLEncoder.encode(change_language, "UTF-8");
-            
+
             String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
