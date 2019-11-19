@@ -106,7 +106,7 @@ $("#captureButton").on('click', function(e) {  //캡쳐 기능 활성화
 
       } else {
           var capture = document.createElement('img');
-          capture.style="border: 1px solid blue; position: fixed; top: 0px; left: 0px;";
+          capture.style="border: 1px solid blue; position: fixed; top: 0px; left: 0px; border:3px dotted #008080; border-radius:5px;";
           capture.class="capture";
           capture.setAttribute('draggable', true);
           capture.src = canvas.toDataURL("image/jpeg");
@@ -114,7 +114,7 @@ $("#captureButton").on('click', function(e) {  //캡쳐 기능 활성화
               let shiftX = event.clientX - capture.getBoundingClientRect().left;
               let shiftY = event.clientY - capture.getBoundingClientRect().top;
 
-              capture.style.position = 'absolute';
+              capture.style.position = 'fixed';
               capture.style.zIndex = 1000;
               document.body.append(capture);
 
