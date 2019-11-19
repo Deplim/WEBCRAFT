@@ -96,11 +96,11 @@ function changeSelectionLocation(event){
   	// 받은 입력이 무엇인가.
     try{
         if (key === 39) { // 오른쪽 방향키
-            range.setStart(sel.anchorNode, sel.anchorOffset + 1);
-            range.collapse(true);
+        	sel.modify('move', 'forward', "character");
+        	return 0;
         } else if (key == 37){ // 왼쪽 방향키
-            range.setStart(sel.anchorNode, sel.anchorOffset - 1);
-            range.collapse(true);
+            sel.modify('move', 'backward', "character");
+        	return 0;
         } else if (key == 38){ // 위 방향키
         	sel.modify('move', 'backward', "line");
         	return 0;
@@ -117,8 +117,6 @@ function changeSelectionLocation(event){
         	translator();
         } else {
             console.log("Nothing command"); }
-        sel.removeAllRanges();
-        sel.addRange(range);
     }
     catch(error){
         console.log(error.message);
