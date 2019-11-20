@@ -4,28 +4,32 @@
         color : #ff7f00;
         border: 3px solid #ff7f00;
         border-radius: 10px;
-        font-size:15px;
+        font:15px calibre;
+        padding:1px 6px;
     }
 #captureButton{
         background-color: white;
         color : #81c147;
         border: 3px solid #81c147;
         border-radius: 10px;
-        font-size:15px;
+        font:15px calibre;
+        padding:1px 6px;
 }
 #saveButton{
         background-color: white;
         color : #50bcdf;
         border: 3px solid #50bcdf;
         border-radius: 10px;
-        font-size:15px;
+        font:15px calibre;
+        padding:1px 6px;
 }
 #recieveButton{
         background-color: white;
         color : #BF00FF;
         border: 3px solid #BF00FF;
         border-radius: 10px;
-        font-size:15px;
+        font:15px calibre;
+        padding:1px 6px;
 }
 #textArea{
         background-color: white;
