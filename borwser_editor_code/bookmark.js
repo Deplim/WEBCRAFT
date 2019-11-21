@@ -1,15 +1,23 @@
 //B:북마크 추가 , V:북마크 삭제 , N:북마크위로 , M:북마크 아래로
 
 //북마크가 삽입된 좌표를 배열로 만들기
-var bookMarkArrayX = new Array();//x좌표
-var bookMarkArrayY = new Array();//y좌표
+//만약 업데이트 페이지의 배열이 있으면 불러오고 없으면 새로 생성
+if(bookMarkArrayX2==null){
+    var bookMarkArrayX = new Array();//x좌표
+    var bookMarkArrayY = new Array();//y좌표
+}else{
+    var bookMarkArrayX = bookMarkArrayX2;//x좌표
+    var bookMarkArrayY = bookMarkArrayY2;//y좌표
+}
 var jbBook_array = new Array(); // 북마크 저장하는 배열
 
 
-arrayLocation=-1; // 페이지 업 다운 관련 , 북마크 배열의 갯수와 현재 위치
+
+arrayLocation = -1; // 페이지 업 다운 관련 , 북마크 배열의 갯수와 현재 위치
 
 //클릭과 버튼에 반응하기.
 document.addEventListener("keydown", bookmark_reaction, false)
+
 
 
 // caret 함수 3 : 신호에 따라 selection 위치를 바꾼다. caret update 함수에서 사용됨.
@@ -18,6 +26,9 @@ function bookmark_reaction(event){
   	// 받은 입력이 무엇인가.
     try{
         if(key == 66){
+            if(bookMarkArrayX==null){
+                arrayLocation= -1;
+            }
             arrayLocation = bookMark(); //i1과 i2가 같아야해서 -0부터 시작
             console.log(arrayLocation + "==>> Nowi2");
         }
@@ -27,19 +38,21 @@ function bookmark_reaction(event){
             console.log(arrayLocation+ "##Before arrayLocation###");
             //console.log(nodeCounter.length+ "##Before nodeCounter.length###");
             window.scrollTo(bookMarkArrayX[arrayLocation],bookMarkArrayY[arrayLocation]);
+            
 
          }
         else if(key==86){//v입력시
             BookPageDelete(arrayLocation);
             console.log(arrayLocation +"now i2 In KEY");
-            if(arrayLocation==0){//0번배열 넘어가는거 방지
-                arrayLocation=0;
+            if(arrayLocation==-1){//0번배열 넘어가는거 방지
+                arrayLocation= -1;
             }
             else{
                 arrayLocation = arrayLocation-1;//마지막 북마크 삭제시 널값방지
             }
-            //eventB = 1;
+            
             window.scrollTo(bookMarkArrayX[arrayLocation],bookMarkArrayY[arrayLocation]);
+           
         }
     }
     catch(error){
@@ -51,7 +64,14 @@ function bookmark_reaction(event){
 
 //북마크 새로 또 만드는 함수
 function bookMark(){
+    
+    
 
+
+    //console.log(jbBook_array+"jbBOOK_ARRAY")
+    
+    //console.log(arrayLocation+"arrayLocation111")
+    
     var jbBook = document.createElement('img');
 
     //북마크 이미지 수정
@@ -67,35 +87,63 @@ function bookMark(){
     jbBook_att.value="jbBook_class";
     jbBook.setAttributeNode(jbBook_att);
 
+    
+
+
+
     //배열에 추가
     bookMarkArrayY.push(String(absoluteTop));
     bookMarkArrayX.push(String(x));
 
+    //console.log(bookMarkArrayX+"XXXX");
+    //console.log(bookMarkArrayY+"YYYY");
+    
+
     //배열의 인덱스 +1;
     arrayLocation = arrayLocation+1;
-
+    //console.log(arrayLocation+"arrayLocation222")
+    
     //노드에 앞부분 순서대로 arrayLocation 인덱스로 북마크 넣기
     document.body.insertBefore(jbBook,document.body.childNodes[arrayLocation]);
+    
 
     // 저장할 배열에 jbBook 저장, 추후 수정해야함
     jbBook_array.push(jbBook);
+    
+    
+    //console.log(jbBook_array+"jbBOOK_ARRAY")
+    
 
     return arrayLocation;
 
 }
 
 function BookPageDelete(arrayLocation){
+    
 
     //널이 아니면 삭제 진행
     if(bookMarkArrayX[arrayLocation]=!null){
+    
 
-        //arrayLocation위치 인덱스 삭제
-        document.body.removeChild(document.body.childNodes[arrayLocation]);
+    //arrayLocation위치 인덱스 삭제
+        if(document.body.childNodes[0]=="[object HTMLImageElement]"){
+            document.body.removeChild(document.body.childNodes[arrayLocation]);
+            //console.log(arrayLocation+"-> delete in node");
+        }else{
+            console.log("NOT BOOKMARK!");
+        }
+   
 
         //현재 배열 제거
         bookMarkArrayX.splice(arrayLocation,1);
         bookMarkArrayY.splice(arrayLocation,1);
-        console.log(arrayLocation+"-> delete");
+       // console.log(arrayLocation+"-> delete");
+
+        
+        jbBook_array.pop();
+        //console.log(jbBook_array+"jbBOOK_ARRAY")
+        
+    
 
         return arrayLocation;
     }
