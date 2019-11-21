@@ -33,13 +33,31 @@ window.onload = function () {
 
 // 로드
 function recieveURL(){
-	chrome.storage.sync.get("data", function(items) {
+	var target_html=null;
+	var url_array;
+	var current_url=String(window.location);
+
+	chrome.storage.sync.get( "search_url" , function(items) {
+		console.log("item: " + items.value);
+		console.log("recieve/ search_url: "+items.search_url);
+		url_array=items.search_url;
+		for(var i in url_array){
+			console.log("recieve/ url array : "+url_array[i]);
+			console.log("recieve/ current_url : "+current_url);
+			if(url_array[i]==current_url){
+				target_html="eui_"+String(i);
+			}
+	    }
+	    console.log("recieve/ target_html: "+target_html);
+	});
+
+	chrome.storage.sync.get( target_html , function(items) {
 		if (!chrome.runtime.error) {
 
+			eval("console.log('target : '+target_html)")
+			eval("console.log('result : '+items."+target_html+")")
 			// 비어 있다면 Element 태그 내에 아무것도 안넣음
-			if(items.data == null){}
-			else
-				document.getElementById('Element').innerHTML= items.data;
+			eval("document.getElementById('Element').innerHTML= items."+target_html+";")
 
 
 			// 불러온 태그들 다시 저장 할때 사용하는 배열에 집어넣어줌
@@ -89,6 +107,10 @@ function createURL() {
 	// 저장 할때 쓰는 배열 1. text_area 2. highlight 3. bookmark 정보 저장
 	// 저장전 이전 저장 값 초기화, storage_html_array 초기화
 	var storage_html_array=new Array();
+	var target_html="eui_0"
+	var url_array;
+	var current_url=String(window.location);
+	var tempk=0;
 
 	// text_array 저장
 	for(var i=0 in textarea_array){
@@ -104,10 +126,39 @@ function createURL() {
 	for(var i=0 in jbBook_array){
 		storage_html_array.push(jbBook_array[i].outerHTML);
 	}
+	
+	chrome.storage.sync.get( "search_url" , function(items) {
+		url_array=items.search_url
+		if(url_array == null){
+			console.log("first url");
+			url_array=new Array();
+			url_array.push(current_url);
+			target_html="eui_"+"0"
+			console.log(url_array);
+		}
+		else if(url_array.includes(current_url)){
+			console.log("include url");
+			target_html="eui_"+String(url_array.indexOf(current_url));
+		}
+		else if(!url_array.includes(current_url)){
+			console.log("not include url");
+			url_array.push(current_url);
+			target_html="eui_"+String(url_array.length-1);
+		}
+		else{
+			console.log("WTF!!!");
+		}
+		console.log("eui check");
+		chrome.storage.sync.set({ "search_url" : url_array }, function() {
+			console.log("storage/ url_array : "+url_array); 
+        	console.log("storage/ target_html: "+target_html);
+        	eval("chrome.storage.sync.set({ "+target_html+" : storage_html_array }, function() {})");
+    	});
+	});
 
-    chrome.storage.sync.set({ "data" : storage_html_array }, function() {
-        if (chrome.runtime.error) {
-            console.log("Runtime error.");
-        }
+
+    chrome.storage.sync.get( "search_url" , function(items) {
+    	console.log("check >>> >< : "+items.search_url);
     });
+    
 }
