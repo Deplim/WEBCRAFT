@@ -43,10 +43,12 @@ function recieveURL(){
 	chrome.storage.sync.get( target_html , function(items) {
 		if (!chrome.runtime.error) {
 
-			eval("console.log('target : '+target_html)")
-			eval("console.log('result : '+items."+target_html+")")
+			eval("console.log('target : '+target_html)");
+			eval("console.log('result : '+items."+target_html+")");
 			// 비어 있다면 Element 태그 내에 아무것도 안넣음
-			eval("document.getElementById('Element').innerHTML= items."+target_html+";")
+
+			eval("document.getElementById('Element').innerHTML= items." + target_html + ";");
+
 
 
 			// 불러온 태그들 다시 저장 할때 사용하는 배열에 집어넣어줌
