@@ -1,12 +1,11 @@
 //코드 참조 : https://sub0709.blogspot.com/2019/04/javascript_17.html
 
 var cp_button = document.createElement('button');
-cp_button.innerHTML=("capture");
-//디자인 추가
 cp_button.id="captureButton";
+cp_button.innerHTML=("capture");
 cp_button.style="position: fixed; bottom: 10px; right: 95px;";
-
 document.body.appendChild(cp_button);
+
 
 $("#captureButton").on('click', function(e) {  //캡쳐 기능 활성화
   console.log("capture start");

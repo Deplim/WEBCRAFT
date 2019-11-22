@@ -2,24 +2,6 @@
 var count=0;
 var textarea_array=new Array();
 
-// text area mode 를 실행할 버튼 태그 생성.
-var ta_button = document.createElement('button');
-
-// 버튼에 id 속성 삽입 
-ta_button.id="textButton";
-
-//버튼 이름.
-ta_button.innerHTML=("textarea_mode(off)");
-
-// 버튼에 style 속성 삽입. 
-ta_button.style="position: fixed; bottom: 10px; right: 170px;";
-
-// 버튼 태그 dom 트리에 달기 
-document.body.appendChild(ta_button);
-
-ta_button.addEventListener('click', text_area_mode);
-
-
 //text_area 함수 1 : text_area_mode 버튼이 눌렸을 때 어떤 행동을 할지 결정한다.
 function text_area_mode(){
     check=0; // check 0 이면 버튼이 방금 눌린것 

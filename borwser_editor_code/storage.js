@@ -1,26 +1,12 @@
+
 // 1. text_area 저장 - 구현 O
 // 2. highlight 저장 - 구현 O
 // 3. text_area 로드 - 구현 O
 // 4. highlight 로드 - 구현 O
+// 5. 캡처
+// 6. 번역 -> 번역을 highlight 하위로 만들면 자동 해결
 
-//필요 element 생성
-var st_button = document.createElement('button');
-st_button.innerHTML=("storage");
-//디자인 관련
-st_button.id="saveButton";
-st_button.style="position: fixed; bottom: 40px; right: 10px;";
-
-document.body.appendChild(st_button);
-st_button.addEventListener('click', createURL);
-
-var rc_button = document.createElement('button');
-rc_button.innerHTML=("character");
-//디자인 관련
-rc_button.id="recieveButton";
-rc_button.style="position: fixed; bottom: 10px; right: 10px;";
-document.body.appendChild(rc_button);
-rc_button.addEventListener('click', recieveURL);
-
+// 불러온 태그들이 저장될 태그 생성
 var space=document.createElement('p')
 space.id="Element";
 document.body.appendChild(space);
@@ -28,7 +14,6 @@ document.body.appendChild(space);
 //북마크 좌표 넣을 공간
 var bookMarkArrayX2 = new Array();//x좌표
 var bookMarkArrayY2 = new Array();//y좌표
-
 
 // 페이지 로딩 완료시 함수 작동
 window.onload = function () {
