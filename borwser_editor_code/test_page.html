@@ -4,6 +4,10 @@
 </head>
 
 <body>
+
+<input type="button" id="toggler" value="Toggler" onClick="action();" />
+<input type="button" id="togglee" value="Togglee" />
+
 --------HEAD
 <div id="editable">
     text text text text text text text text text text text text text text text text text text text text text text text text
@@ -52,3 +56,14 @@
 <script src='library/html2canvas.min.js'></script>
 
 </body>
+<script>
+    var hidden = false;
+    function action() {
+        hidden = !hidden;
+        if(hidden) {
+            document.getElementById('togglee').style.visibility = 'hidden';
+        } else {
+            document.getElementById('togglee').style.visibility = 'visible';
+        }
+    }
+</script>
