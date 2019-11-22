@@ -11,13 +11,7 @@ if(bookMarkArrayX2==null){
 }
 var jbBook_array = new Array(); // 북마크 저장하는 배열
 
-
-
 arrayLocation = -1; // 페이지 업 다운 관련 , 북마크 배열의 갯수와 현재 위치
-
-//클릭과 버튼에 반응하기.
-document.addEventListener("keydown", bookmark_reaction, false)
-
 
 
 // caret 함수 3 : 신호에 따라 selection 위치를 바꾼다. caret update 함수에서 사용됨.

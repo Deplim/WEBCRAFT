@@ -22,6 +22,9 @@ var caret = document.createElement('img');
 // 캐럿에 src 속성 삽입.
 caret.src= "https://github.com/Deplim/CWeb_browser_editor/blob/master/source/%EB%8F%84%EA%B5%AC/1234.png?raw=true";
 
+// 캐럿에 id 속성 삽입.
+caret.id = "caret_id";
+
 // 캐럿에 style 속성 삽입.
 caret.style="opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 900; width: 10px; height: 20px";
 
@@ -29,10 +32,6 @@ caret.style="opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 900;
 document.body.appendChild(caret);
 
 // << Element 삽입 영역 끝. >>
-
-//클릭과 버튼에 반응하기.
-document.addEventListener("click", caret_update, false);
-document.addEventListener("keydown", caret_update, false);
 
 //키보드 스크롤 막기
 jQuery(document).keydown(function(e)
