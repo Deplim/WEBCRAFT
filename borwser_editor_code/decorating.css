@@ -41,6 +41,14 @@
         color : #ff7f00;
         border: 2px solid #ff7f00;
 }
+#stateButton{
+        background-color: white;
+        color : #BF0000;
+        border: 3px solid #BF0000;
+        border-radius: 10px;
+        font:15px calibre;
+        padding:1px 6px;
+}
 
 /*capture 관련 css*/
 #screenshot_mask {
