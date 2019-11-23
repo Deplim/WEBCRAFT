@@ -10,7 +10,8 @@ function update() {
         document.addEventListener("click", caret_update, false);
         document.addEventListener("keydown", caret_update, false);
 
-        // 키보드 입력, 마우스 클릭 시 시간 업데이트 해주는 함수
+        // 키보드 입력, 마우스 이동, 클릭 시 시간 업데이트 해주는 함수
+        document.addEventListener("mousemove", time_update, false);
         document.addEventListener("keydown", time_update, false);
         document.addEventListener("click", time_update, false);
     }
@@ -22,6 +23,7 @@ function update() {
         document.removeEventListener("click", caret_update, false);
         document.removeEventListener("keydown", caret_update, false);
 
+        document.removeEventListener("mousemove", time_update, false);
         document.removeEventListener("keydown", time_update, false);
         document.removeEventListener("click", time_update, false);
     }
