@@ -9,6 +9,10 @@ function update() {
         //클릭과 버튼에 반응하기. caret
         document.addEventListener("click", caret_update, false);
         document.addEventListener("keydown", caret_update, false);
+
+        // 키보드 입력, 마우스 클릭 시 시간 업데이트 해주는 함수
+        document.addEventListener("keydown", time_update, false);
+        document.addEventListener("click", time_update, false);
     }
     else{
         //클릭과 버튼에 반응하기. bookmark
@@ -17,5 +21,8 @@ function update() {
         //클릭과 버튼에 반응하기. caret
         document.removeEventListener("click", caret_update, false);
         document.removeEventListener("keydown", caret_update, false);
+
+        document.removeEventListener("keydown", time_update, false);
+        document.removeEventListener("click", time_update, false);
     }
 }

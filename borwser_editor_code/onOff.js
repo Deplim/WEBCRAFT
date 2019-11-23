@@ -24,6 +24,8 @@ function changeState() {
         for(var i = 0; i<jbBook_List.length; i++) {
             jbBook_List[i].style.visibility = "visible";
         }
+        // 캐릭터 시간 시작
+        StartClock();
     }
     else{ // 관련 버튼, 작업물 안보이게함
         on_button.innerHTML="off";
@@ -44,6 +46,9 @@ function changeState() {
         for(var i = 0; i<jbBook_List.length; i++) {
             jbBook_List[i].style.visibility = "hidden";
         }
+
+        // 캐릭터 중지
+        StopClock();
     }
     update(); // In documentListener.js 업데이트
 }

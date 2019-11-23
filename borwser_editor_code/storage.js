@@ -18,6 +18,8 @@ var bookMarkArrayY2 = new Array();//y좌표
 // 페이지 로딩 완료시 함수 작동
 window.onload = function () {
 	recieveURL(); // 로드
+	update(); // 리스너 연결
+	StartClock(); // 일정 시간 미입력시 캐릭터 출력
 }
 
 // 로드
