@@ -15,8 +15,7 @@
         "selection.js",
         "capture.js",
         "Character.js",
-
-        "documentListener.js",
+        
         "onOff.js",
         "insertButton.js",
 
