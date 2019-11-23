@@ -68,7 +68,7 @@ function insert_text_area(){
 
         // div style 속성 삽입.
         var div_area_att2 = document.createAttribute("style");
-        div_area_att2.value="position: absolute; left: "+absoluteLeft+"px; top: "+absoluteTop+"px; width: 100px; height: 100px;";
+        div_area_att2.value="position: absolute; left: "+absoluteLeft+"px; top: "+absoluteTop+"px; width: 150px; height: 150px;";
         div_area.setAttributeNode(div_area_att2);
 
         // div class 속성 삽입.
@@ -84,7 +84,7 @@ function insert_text_area(){
         // 텍스트 박스 테그 생성. 
         var text_area = document.createElement('textarea');
    		// 텍스트 박스 안에 디폴트로 들어가 문자.
-        text_area.innerHTML=('input text here :)');
+        text_area.placeholder = "input text here :)";
 	    // 버튼에 id 속성 삽입 
         text_area.id="textArea";
 	    
