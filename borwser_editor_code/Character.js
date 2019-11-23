@@ -4,7 +4,7 @@ var character_img1 = document.createElement('img');
 character_img1.src= "http://www.city.kr/files/attach/images/161/161/027/020/ad5d169730425190f67cd90fd661889e.gif";
 character_img1.id = "character_img1_id";
 // 이미지 변수에 style 속성 삽입.
-character_img1.style="opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 900; width: 200px; height: 200px; visibility=hidden";
+character_img1.style="opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 900; width: 100px; height: 100px; visibility=hidden";
 
 document.body.appendChild(character_img1);
 
@@ -29,7 +29,7 @@ function time_update() {
 }
 
 //현재 시간 출력
-function PrintTime() {
+function PrintCharacter() {
     var today = new Date();
     var gap = today.getTime() - old.getTime(); // 시간 차이
     var sec_gap = gap / 1000; // 시간 차이 (sec)
@@ -42,10 +42,18 @@ function PrintTime() {
     }
 }
 
+// 캐릭터 위치 이동 (텍스트 박스 생성시)
+function moveCharacter(absoluteLeft, absoluteTop) {
+    absoluteLeft = absoluteLeft + 150;
+    character_img1.style="opacity:0.5; position: absolute; top: "+absoluteTop+"px; left: "+absoluteLeft+"px; z-index: 900; width: 100px; height: 100px; visibility=visible";
+    
+}
+
 // 시계 시작
 function StartClock() {
-    PrintTime();
-    timerld = setInterval(PrintTime,1000);
+    PrintCharacter();
+    // 1초마다 PrintCharacter 실행해서 현재 시간과 마지막 움직인 시간 비교해 캐릭터 출력
+    timerld = setInterval(PrintCharacter,1000); 
 }
 
 // 시계 정지

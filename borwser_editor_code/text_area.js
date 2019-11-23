@@ -111,6 +111,9 @@ function insert_text_area(){
         div_area.appendChild(ta_delete);
 
         textarea_array.push(div_area);
+        
+        // 캐릭터 텍스트 박스 오른쪽으로 이동
+        moveCharacter(absoluteLeft, absoluteTop);
     }
     check=check+1;
 }
