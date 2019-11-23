@@ -46,7 +46,7 @@ function changeState() {
         for(var i = 0; i<jbBook_List.length; i++) {
             jbBook_List[i].style.visibility = "hidden";
         }
-
+        document.getElementById("character_img1_id").style.visibility = "hidden";
         // 캐릭터 중지
         StopClock();
     }
