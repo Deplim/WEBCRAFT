@@ -24,6 +24,7 @@ function changeState() {
         for(var i = 0; i<jbBook_List.length; i++) {
             jbBook_List[i].style.visibility = "visible";
         }
+        document.getElementById("default_img1_id").style.visibility = "visible";
         // 캐릭터 시간 시작
         StartClock();
     }
@@ -47,6 +48,7 @@ function changeState() {
             jbBook_List[i].style.visibility = "hidden";
         }
         document.getElementById("character_img1_id").style.visibility = "hidden";
+        document.getElementById("default_img1_id").style.visibility = "hidden";
         // 캐릭터 중지
         StopClock();
     }

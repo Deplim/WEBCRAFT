@@ -1,3 +1,13 @@
+// 항상 떠 있을 이미지
+var default_img1 = document.createElement('img');
+// 이미지 변수에 src 속성 삽입.(이미지 주소)
+default_img1.src= "https://mathiasbynens.be/demo/animated-webp-supported.webp";
+default_img1.id = "default_img1_id";
+// 이미지 변수에 style 속성 삽입.
+default_img1.style="opacity:1; position: fixed; top: 0px; left: 0px; z-index: 900; width: 100px; height: 100px; visibility=visible";
+default_img1.setAttribute('draggable', true);
+
+
 // 잠수시 뜰 이미지 변수
 var character_img1 = document.createElement('img');
 // 이미지 변수에 src 속성 삽입.(이미지 주소)
@@ -5,20 +15,20 @@ character_img1.src= "http://www.city.kr/files/attach/images/161/161/027/020/ad5d
 character_img1.id = "character_img1_id";
 // 이미지 변수에 style 속성 삽입.
 character_img1.style="opacity:0.5; position: fixed; top: 0px; left: 0px; z-index: 900; width: 100px; height: 100px; visibility=hidden";
-
 character_img1.setAttribute('draggable', true);
 
-character_img1.onmousedown = function(event) {
-    let shiftX = event.clientX - character_img1.getBoundingClientRect().left;
-    let shiftY = event.clientY - character_img1.getBoundingClientRect().top;
+
+default_img1.onmousedown = function(event) {
+    let shiftX = event.clientX - default_img1.getBoundingClientRect().left;
+    let shiftY = event.clientY - default_img1.getBoundingClientRect().top;
 
     CharacterMoveAt(event.pageX, event.pageY);
 
     // moves the ball at (pageX, pageY) coordinates
     // taking initial shifts into account
     function CharacterMoveAt(pageX, pageY) {
-        character_img1.style.left = pageX - shiftX + 'px';
-        character_img1.style.top = pageY - shiftY + 'px';
+        default_img1.style.left = pageX - shiftX + 'px';
+        default_img1.style.top = pageY - shiftY + 'px';
     }
 
     function onMouseMove(event) {
@@ -29,17 +39,16 @@ character_img1.onmousedown = function(event) {
     document.addEventListener('mousemove', onMouseMove);
 
     // drop the ball, remove unneeded handlers
-    character_img1.onmouseup = function() {
+    default_img1.onmouseup = function() {
         document.removeEventListener('mousemove', onMouseMove);
-        character_img1.onmouseup = null;
+        default_img1.onmouseup = null;
     }
 };
-character_img1.ondragstart = function() {
+default_img1.ondragstart = function() {
     return false;
 };
 
-
-
+document.body.appendChild(default_img1);
 document.body.appendChild(character_img1);
 
 // 얼만큼 미입력 상태일때 반응을 줄건지
@@ -96,3 +105,30 @@ function StopClock() {
         clearInterval(timerld);
     }
 }
+// 캐릭터 이미지 드래그 이동
+function moveCharacter(CharacterImage) {
+    let shiftX = event.clientX - CharacterImage.getBoundingClientRect().left;
+    let shiftY = event.clientY - CharacterImage.getBoundingClientRect().top;
+
+    CharacterMoveAt(event.pageX, event.pageY);
+
+    // moves the ball at (pageX, pageY) coordinates
+    // taking initial shifts into account
+    function CharacterMoveAt(pageX, pageY) {
+        CharacterImage.style.left = pageX - shiftX + 'px';
+        CharacterImage.style.top = pageY - shiftY + 'px';
+    }
+
+    function onMouseMove(event) {
+        CharacterMoveAt(event.pageX, event.pageY);
+    }
+
+    // move the ball on mousemove
+    document.addEventListener('mousemove', onMouseMove);
+
+    // drop the ball, remove unneeded handlers
+    CharacterImage.onmouseup = function() {
+        document.removeEventListener('mousemove', onMouseMove);
+        CharacterImage.onmouseup = null;
+    }
+};
