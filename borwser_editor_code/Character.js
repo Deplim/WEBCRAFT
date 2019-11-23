@@ -4,7 +4,41 @@ var character_img1 = document.createElement('img');
 character_img1.src= "http://www.city.kr/files/attach/images/161/161/027/020/ad5d169730425190f67cd90fd661889e.gif";
 character_img1.id = "character_img1_id";
 // 이미지 변수에 style 속성 삽입.
-character_img1.style="opacity:0.5; position: absolute; top: 0px; left: 0px; z-index: 900; width: 100px; height: 100px; visibility=hidden";
+character_img1.style="opacity:0.5; position: fixed; top: 0px; left: 0px; z-index: 900; width: 100px; height: 100px; visibility=hidden";
+
+character_img1.setAttribute('draggable', true);
+
+character_img1.onmousedown = function(event) {
+    let shiftX = event.clientX - character_img1.getBoundingClientRect().left;
+    let shiftY = event.clientY - character_img1.getBoundingClientRect().top;
+
+    CharacterMoveAt(event.pageX, event.pageY);
+
+    // moves the ball at (pageX, pageY) coordinates
+    // taking initial shifts into account
+    function CharacterMoveAt(pageX, pageY) {
+        character_img1.style.left = pageX - shiftX + 'px';
+        character_img1.style.top = pageY - shiftY + 'px';
+    }
+
+    function onMouseMove(event) {
+        CharacterMoveAt(event.pageX, event.pageY);
+    }
+
+    // move the ball on mousemove
+    document.addEventListener('mousemove', onMouseMove);
+
+    // drop the ball, remove unneeded handlers
+    character_img1.onmouseup = function() {
+        document.removeEventListener('mousemove', onMouseMove);
+        character_img1.onmouseup = null;
+    }
+};
+character_img1.ondragstart = function() {
+    return false;
+};
+
+
 
 document.body.appendChild(character_img1);
 

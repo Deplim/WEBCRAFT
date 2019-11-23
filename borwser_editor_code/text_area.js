@@ -87,6 +87,7 @@ function insert_text_area(){
         text_area.placeholder = "input text here :)";
 	    // 버튼에 id 속성 삽입 
         text_area.id="textArea";
+
 	    
         // 텍스트 박스에 style 속성 삽입.
         text_area.style="opacity:0.75; font-weight:600; position: absolute; left: 0px; top: 0px; width: 100px; height: 100px;";
