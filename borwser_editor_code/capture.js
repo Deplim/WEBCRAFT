@@ -1,5 +1,7 @@
 //코드 참조 : https://sub0709.blogspot.com/2019/04/javascript_17.html
 
+var capture_array = new Array();
+
 var cp_button = document.createElement('button');
 cp_button.id="captureButton";
 cp_button.innerHTML=("capture");
@@ -106,49 +108,53 @@ $("#captureButton").on('click', function(e) {  //캡쳐 기능 활성화
       } else {
           var capture = document.createElement('img');
           capture.style="border: 1px solid blue; position: fixed; top: 0px; left: 0px; border:3px dotted #008080; border-radius:5px;";
-          capture.class="capture";
+
+          var capture_att = document.createAttribute("class");
+          capture_att.value="capture_class";
+          capture.setAttributeNode(capture_att);
+
           capture.setAttribute('draggable', true);
           capture.src = canvas.toDataURL("image/jpeg");
           capture.onmousedown = function(event) {
-              let shiftX = event.clientX - capture.getBoundingClientRect().left;
-              let shiftY = event.clientY - capture.getBoundingClientRect().top;
-
-              capture.style.position = 'fixed';
-              capture.style.zIndex = 1000;
-              document.body.append(capture);
-
-              moveAt(event.pageX, event.pageY);
-
-		  // moves the ball at (pageX, pageY) coordinates
-		  // taking initial shifts into account
-              function moveAt(pageX, pageY) {
-                  capture.style.left = pageX - shiftX + 'px';
-                  capture.style.top = pageY - shiftY + 'px';
-              }
-
-              function onMouseMove(event) {
-                  moveAt(event.pageX, event.pageY);
-              }
-
-
-		  // move the ball on mousemove
-              document.addEventListener('mousemove', onMouseMove);
-
-		  // drop the ball, remove unneeded handlers
-              capture.onmouseup = function() {
-                  document.removeEventListener('mousemove', onMouseMove);
-                  capture.onmouseup = null;
-              };
+              captureMouseDown(event, capture);
           };
-
           capture.ondragstart = function() {
               return false;
           };
+          capture_array.push(capture);
           document.body.appendChild(capture);
       }
-
   }
 });
 
+function captureMouseDown(event, capture) {
+    let shiftX = event.clientX - capture.getBoundingClientRect().left;
+    let shiftY = event.clientY - capture.getBoundingClientRect().top;
+
+    capture.style.position = 'fixed';
+    capture.style.zIndex = 1000;
+    document.body.append(capture);
+
+    moveAt(event.pageX, event.pageY);
+
+    // moves the ball at (pageX, pageY) coordinates
+    // taking initial shifts into account
+    function moveAt(pageX, pageY) {
+        capture.style.left = pageX - shiftX + 'px';
+        capture.style.top = pageY - shiftY + 'px';
+    }
+
+    function onMouseMove(event) {
+        moveAt(event.pageX, event.pageY);
+    }
+    // move the ball on mousemove
+    document.addEventListener('mousemove', onMouseMove);
+
+    // drop the ball, remove unneeded handlers
+    capture.onmouseup = function() {
+        document.removeEventListener('mousemove', onMouseMove);
+        capture.onmouseup = null;
+    };
+};
 
 
