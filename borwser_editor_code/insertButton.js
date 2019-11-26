@@ -8,9 +8,9 @@ var st_button = document.createElement('button');
 st_button.innerHTML=("storage");
 st_button.id="saveButton";
 
-var rc_button = document.createElement('button');
-rc_button.innerHTML=("character");
-rc_button.id="recieveButton";
+var ch_button = document.createElement('button');
+ch_button.innerHTML=("character");
+ch_button.id="characterButton";
 
 var ta_button = document.createElement('button');
 ta_button.id="textButton";
@@ -22,19 +22,19 @@ on_button.innerHTML=("on");
 
 // style
 st_button.style="position: fixed; bottom: 40px; right: 10px;";
-rc_button.style="position: fixed; bottom: 10px; right: 10px;";
+ch_button.style="position: fixed; bottom: 10px; right: 10px;";
 ta_button.style="position: fixed; bottom: 10px; right: 170px;";
 on_button.style="position: fixed; bottom: 40px; right: 95px;";
 
 // body.appendChild
 document.body.appendChild(st_button);
-document.body.appendChild(rc_button);
+document.body.appendChild(ch_button);
 document.body.appendChild(ta_button);
 document.body.appendChild(on_button);
 
 
 // addEventListener
 st_button.addEventListener('click', createURL);
-rc_button.addEventListener('click', recieveURL);
+ch_button.addEventListener('click', characterUpdate);
 ta_button.addEventListener('click', text_area_mode);
 on_button.addEventListener('click', changeState);
