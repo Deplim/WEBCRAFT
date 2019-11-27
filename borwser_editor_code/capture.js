@@ -115,12 +115,14 @@ $("#captureButton").on('click', function(e) {  //캡쳐 기능 활성화
 
           capture.setAttribute('draggable', true);
           capture.src = canvas.toDataURL("image/jpeg");
+
           capture.onmousedown = function(event) {
               captureMouseDown(event, capture);
           };
           capture.ondragstart = function() {
               return false;
           };
+
           capture_array.push(capture);
           document.body.appendChild(capture);
       }

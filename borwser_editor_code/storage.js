@@ -37,6 +37,7 @@ function recieveURL(){
 			if(url_array[i]==current_url){
 				target_html="eui_"+String(i);
 			}
+
 	    }
 	    console.log("recieve/ target_html: "+target_html);
 	});
@@ -47,10 +48,7 @@ function recieveURL(){
 			eval("console.log('target : '+target_html)");
 			eval("console.log('result : '+items."+target_html+")");
 			// 비어 있다면 Element 태그 내에 아무것도 안넣음
-
 			eval("document.getElementById('Element').innerHTML= items." + target_html + ";");
-
-
 
 			// 불러온 태그들 다시 저장 할때 사용하는 배열에 집어넣어줌
 			// textarea 담긴 태그 찾아줌(div)
@@ -74,7 +72,7 @@ function recieveURL(){
 				jbBook_array.push((jbBook_List[i]));
 			}
 
-			for(i=0;i<jbBook_array.length;i++){
+			for(var i=0;i<jbBook_array.length;i++){
 				//jbBook의 x좌표 불러와서 px자르고 bookMarkArrayX2에 넣기
 				splitstring=(jbBook_array[i].style.left).split('px');
 				bookMarkArrayX2[i]=splitstring[0];
@@ -84,8 +82,13 @@ function recieveURL(){
 				bookMarkArrayY2[i]=splitstring2[0];
 			}
 
-			//console.log(bookMarkArrayX2+"---bookMarkArrayX")
-			//console.log(bookMarkArrayY2+"---bookMarkArrayY")
+			// storage.syn 용량상으로 캡쳐 저장 못함
+			// capture 태그 찾아줌
+			// var capture_List = document.getElementsByClassName("capture_class");
+			// for(var i = 0; i<capture_List.length; i++){
+			// 	// capture_array에 불러온 값 넣어줌
+			// 	capture_array.push(capture_List[i]);
+			// }
 			
 			// 불러온 태그에 addEventListener 연결
 			// x 버튼 태그들 찾아줌
@@ -101,6 +104,16 @@ function recieveURL(){
 				document.body.insertBefore(jbBook_List[i],document.body.childNodes[i]);
 			}
 
+			// 위와 마찬가지의 이유
+			// capture 드래그앤드롭 연결
+			// for(var i = 0; i<capture_List.length; i++){
+			// 	capture_List[i].onmousedown = function(event) {
+			// 		captureMouseDown(event, capture_List[i]);
+			// 	};
+			// 	capture_List[i].ondragstart = function() {
+			// 		return false;
+			// 	};
+			// }
 		}
 	});
 }
@@ -112,11 +125,9 @@ function createURL() {
 	// 저장 할때 쓰는 배열 1. text_area 2. highlight 3. bookmark 정보 저장
 	// 저장전 이전 저장 값 초기화, storage_html_array 초기화
 	var storage_html_array=new Array();
-	var target_html="eui_0"
+	var target_html="eui_0";
 	var url_array;
 	var current_url=String(window.location);
-	var tempk=0;
-	
 
 	// text_array 저장
 	for(var i=0 in textarea_array){
@@ -129,10 +140,13 @@ function createURL() {
 		storage_html_array.push(highlight_array[i][0].outerHTML);
 	}
 	// bookmark 저장
-
 	for(var i=0 in jbBook_array){
 		storage_html_array.push(jbBook_array[i].outerHTML);
-		
+	}
+	// capture 저장
+	for(var i=0 in capture_array){
+		storage_html_array.push(capture_array[i].outerHTML);
+		console.log("capture: "+capture_array[i]);
 	}
 	
 
