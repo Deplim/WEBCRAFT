@@ -84,11 +84,12 @@ function recieveURL(){
 
 			// storage.syn 용량상으로 캡쳐 저장 못함
 			// capture 태그 찾아줌
-			// var capture_List = document.getElementsByClassName("capture_class");
-			// for(var i = 0; i<capture_List.length; i++){
-			// 	// capture_array에 불러온 값 넣어줌
-			// 	capture_array.push(capture_List[i]);
-			// }
+			var capture_List = document.getElementsByClassName("capture_class");
+			for(var i = 0; i<capture_List.length; i++){
+				// capture_array에 불러온 값 넣어줌
+				console.log(capture_List[i]);
+				capture_array.push(capture_List[i]);
+			}
 			
 			// 불러온 태그에 addEventListener 연결
 			// x 버튼 태그들 찾아줌
@@ -106,14 +107,15 @@ function recieveURL(){
 
 			// 위와 마찬가지의 이유
 			// capture 드래그앤드롭 연결
-			// for(var i = 0; i<capture_List.length; i++){
-			// 	capture_List[i].onmousedown = function(event) {
-			// 		captureMouseDown(event, capture_List[i]);
-			// 	};
-			// 	capture_List[i].ondragstart = function() {
-			// 		return false;
-			// 	};
-			// }
+			for(var i = 0; i<capture_List.length; i++){
+				var temp_capture = capture_List[i];
+				temp_capture.onmousedown = function(event) {
+					captureMouseDown(event, temp_capture);
+				};
+				temp_capture.ondragstart = function() {
+					return false;
+				};
+			}
 		}
 	});
 }
