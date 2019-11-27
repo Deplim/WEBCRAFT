@@ -27,7 +27,7 @@ function recieveURL(){
 	var url_array;
 	var current_url=String(window.location);
 
-	chrome.storage.sync.get( "search_url" , function(items) {
+	chrome.storage.local.get( "search_url" , function(items) {
 		console.log("item: " + items.value);
 		console.log("recieve/ search_url: "+items.search_url);
 		url_array=items.search_url;
@@ -42,7 +42,7 @@ function recieveURL(){
 	    console.log("recieve/ target_html: "+target_html);
 	});
 
-	chrome.storage.sync.get( target_html , function(items) {
+	chrome.storage.local.get( target_html , function(items) {
 		if (!chrome.runtime.error) {
 
 			eval("console.log('target : '+target_html)");
@@ -150,7 +150,7 @@ function createURL() {
 	}
 	
 
-	chrome.storage.sync.get( "search_url" , function(items) {
+	chrome.storage.local.get( "search_url" , function(items) {
 		url_array=items.search_url
 		if(url_array == null){
 			console.log("first url");
@@ -176,16 +176,16 @@ function createURL() {
 		console.log("eui check");
 		
 		
-		chrome.storage.sync.set({ "search_url" : url_array }, function() {
+		chrome.storage.local.set({ "search_url" : url_array }, function() {
 			console.log("storage/ url_array : "+url_array); 
 			console.log("storage/ target_html: "+target_html);
 			console.log("storage_html_array :  "+storage_html_array);
-        	eval("chrome.storage.sync.set({ "+target_html+" : storage_html_array }, function() {})");
+        	eval("chrome.storage.local.set({ "+target_html+" : storage_html_array }, function() {})");
     	});
 	});
 
 
-    chrome.storage.sync.get( "search_url" , function(items) {
+    chrome.storage.local.get( "search_url" , function(items) {
     	console.log("check >>> >< : "+items.search_url);
     });
     
