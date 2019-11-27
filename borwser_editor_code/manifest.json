@@ -26,6 +26,7 @@
     }
   ],
   "browser_action": {
-  "default_icon": "webcraft_icon.png"
+ 	"default_icon": "webcraft_icon.png",
+ 	"default_popup": "popup.html"
 }
 }
