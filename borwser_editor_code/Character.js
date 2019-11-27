@@ -10,7 +10,7 @@ var current_img = document.createElement('img');
 current_img.src = default_img_src;
 current_img.id = "current_img_id";
 // 이미지 변수에 style 속성 삽입.
-current_img.style="opacity:1; position: fixed; top: 0px; left: 0px; z-index: 900; width: 100px; height: 100px; visibility=hidden";
+current_img.style="opacity:1; position: fixed; top: 0px; left: 200px; z-index: 900; width: 100px; height: 100px; visibility=hidden";
 current_img.setAttribute('draggable', true);
 
 
