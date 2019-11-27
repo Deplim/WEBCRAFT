@@ -1,55 +1,33 @@
+var default_img_src = "https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/watch.webp";
+var wait_img_src = "https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/wait.webp";
+var text_img_src = "https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/text.webp";
+var drag_img_src = "https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/drag.webp";
+
+
 // 항상 떠 있을 이미지
-var default_img1 = document.createElement('img');
+var current_img = document.createElement('img');
 // 이미지 변수에 src 속성 삽입.(이미지 주소)
-default_img1.src= "https://mathiasbynens.be/demo/animated-webp-supported.webp";
-default_img1.id = "default_img1_id";
+current_img.src = default_img_src;
+current_img.id = "current_img_id";
 // 이미지 변수에 style 속성 삽입.
-default_img1.style="opacity:1; position: fixed; top: 0px; left: 0px; z-index: 900; width: 100px; height: 100px; visibility=visible";
-default_img1.setAttribute('draggable', true);
+current_img.style="opacity:1; position: fixed; top: 0px; left: 0px; z-index: 900; width: 100px; height: 100px; visibility=hidden";
+current_img.setAttribute('draggable', true);
 
 
-// 잠수시 뜰 이미지 변수
-var character_img1 = document.createElement('img');
-// 이미지 변수에 src 속성 삽입.(이미지 주소)
-character_img1.src= "http://www.city.kr/files/attach/images/161/161/027/020/ad5d169730425190f67cd90fd661889e.gif";
-character_img1.id = "character_img1_id";
-// 이미지 변수에 style 속성 삽입.
-character_img1.style="opacity:0.5; position: fixed; top: 0px; left: 0px; z-index: 900; width: 100px; height: 100px; visibility=hidden";
-character_img1.setAttribute('draggable', true);
-
-
-default_img1.onmousedown = function(event) {
-    let shiftX = event.clientX - default_img1.getBoundingClientRect().left;
-    let shiftY = event.clientY - default_img1.getBoundingClientRect().top;
-
-    CharacterMoveAt(event.pageX, event.pageY);
-
-    // moves the ball at (pageX, pageY) coordinates
-    // taking initial shifts into account
-    function CharacterMoveAt(pageX, pageY) {
-        default_img1.style.left = pageX - shiftX + 'px';
-        default_img1.style.top = pageY - shiftY + 'px';
-    }
-
-    function onMouseMove(event) {
-        CharacterMoveAt(event.pageX, event.pageY);
-    }
-
-    // move the ball on mousemove
-    document.addEventListener('mousemove', onMouseMove);
-
-    // drop the ball, remove unneeded handlers
-    default_img1.onmouseup = function() {
-        document.removeEventListener('mousemove', onMouseMove);
-        default_img1.onmouseup = null;
-    }
+// 캐릭터 드래그로 위치 이동
+current_img.onmousedown = function(event) {
+    current_img.src = drag_img_src;
+    captureMouseDown(event, current_img);
 };
-default_img1.ondragstart = function() {
+current_img.ondragstart = function() {
     return false;
 };
+current_img.onmouseleave = function(){
+    current_img.src = default_img_src;
+}
 
-document.body.appendChild(default_img1);
-document.body.appendChild(character_img1);
+
+document.body.appendChild(current_img);
 
 // 얼만큼 미입력 상태일때 반응을 줄건지
 const time = 5;
@@ -66,9 +44,11 @@ var timerld = null;
 // 시간 갱신, 캐릭터 안떠있는 상태라 설정해줌
 function time_update() {
     old = new Date();
-    // 반응시 캐릭터 안보이게
-    document.getElementById("character_img1_id").style.visibility = "hidden";
-    appear = false;
+    if(appear) {
+        // 반응시 캐릭터 안보이게
+        document.getElementById("current_img_id").src = default_img_src;
+        appear = false;
+    }
 }
 
 //현재 시간 출력
@@ -80,15 +60,17 @@ function PrintCharacter() {
     // time 초간 키보드, 마우스 클릭 없을시
     if(sec_gap > time && !appear){
         // 캐릭터 보이게 만들어줌
-        document.getElementById("character_img1_id").style.visibility = "visible";
+        document.getElementById("current_img_id").src = wait_img_src;
         appear = true; // 캐릭터 떠있는 상태라 설정해줌
     }
 }
 
 // 캐릭터 위치 이동 (텍스트 박스 생성시)
 function moveCharacterTextArea(absoluteLeft, absoluteTop) {
-    absoluteLeft = absoluteLeft + 150;
-    character_img1.style="opacity:0.5; position: absolute; top: "+absoluteTop+"px; left: "+absoluteLeft+"px; z-index: 900; width: 100px; height: 100px; visibility=visible";
+    absoluteTop = absoluteTop + 20;
+    absoluteLeft = absoluteLeft - 100;
+    current_img.src = text_img_src;
+    current_img.style = "opacity:1; position: absolute; top: "+absoluteTop+"px; left: "+absoluteLeft+"px; z-index: 900; width: 100px; height: 100px; visibility=visible";
     
 }
 
@@ -105,30 +87,3 @@ function StopClock() {
         clearInterval(timerld);
     }
 }
-// 캐릭터 이미지 드래그 이동
-function moveCharacter(CharacterImage) {
-    let shiftX = event.clientX - CharacterImage.getBoundingClientRect().left;
-    let shiftY = event.clientY - CharacterImage.getBoundingClientRect().top;
-
-    CharacterMoveAt(event.pageX, event.pageY);
-
-    // moves the ball at (pageX, pageY) coordinates
-    // taking initial shifts into account
-    function CharacterMoveAt(pageX, pageY) {
-        CharacterImage.style.left = pageX - shiftX + 'px';
-        CharacterImage.style.top = pageY - shiftY + 'px';
-    }
-
-    function onMouseMove(event) {
-        CharacterMoveAt(event.pageX, event.pageY);
-    }
-
-    // move the ball on mousemove
-    document.addEventListener('mousemove', onMouseMove);
-
-    // drop the ball, remove unneeded handlers
-    CharacterImage.onmouseup = function() {
-        document.removeEventListener('mousemove', onMouseMove);
-        CharacterImage.onmouseup = null;
-    }
-};
