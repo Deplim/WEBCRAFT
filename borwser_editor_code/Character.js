@@ -86,7 +86,7 @@ function PrintCharacter() {
 }
 
 // 캐릭터 위치 이동 (텍스트 박스 생성시)
-function moveCharacter(absoluteLeft, absoluteTop) {
+function moveCharacterTextArea(absoluteLeft, absoluteTop) {
     absoluteLeft = absoluteLeft + 150;
     character_img1.style="opacity:0.5; position: absolute; top: "+absoluteTop+"px; left: "+absoluteLeft+"px; z-index: 900; width: 100px; height: 100px; visibility=visible";
     
