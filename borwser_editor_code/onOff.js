@@ -25,11 +25,7 @@ function changeState() {
         for(var i = 0; i<jbBook_List.length; i++) {
             jbBook_List[i].style.visibility = "visible";
         }
-        var capture_List = document.getElementsByClassName("capture_class");
-        for(var i = 0; i<capture_List.length; i++) {
-            capture_List[i].style.visibility = "visible";
-        }
-        document.getElementById("current_img_id").style.visibility = "visible";
+        document.getElementById("character_img1_id").style.visibility = "visible";
         // 캐릭터 시간 시작
         StartClock();
     }
@@ -52,11 +48,7 @@ function changeState() {
         for(var i = 0; i<jbBook_List.length; i++) {
             jbBook_List[i].style.visibility = "hidden";
         }
-        var capture_List = document.getElementsByClassName("capture_class");
-        for(var i = 0; i<capture_List.length; i++) {
-            capture_List[i].style.visibility = "hidden";
-        }
-        document.getElementById("current_img_id").style.visibility = "hidden";
+        document.getElementById("character_img1_id").style.visibility = "hidden";
         // 캐릭터 중지
         StopClock();
     }
@@ -95,10 +87,10 @@ function update() {
 function characterUpdate() {
     characterState = !characterState;
     if(characterState){
-        document.getElementById("current_img_id").style.visibility = "visible";
+        document.getElementById("character_img1_id").style.visibility = "visible";
     }
     else{
-        document.getElementById("current_img_id").style.visibility = "hidden";
+        document.getElementById("character_img1_id").style.visibility = "hidden";
     }
 
 }
