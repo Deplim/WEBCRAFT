@@ -101,7 +101,7 @@ function insert_text_area(){
 	    // 버튼에 id 속성 삽입 
         ta_delete.id="textDelete";
         ta_delete.addEventListener('click', delete_textarea);
-        ta_delete.style="position: absolute; left: -25px; top: 2px; ";
+        ta_delete.style="z-index:999; position: absolute; left: -25px; top: 2px; ";
 
         // ta_delete class 속성 삽입.
         var ta_delete_att = document.createAttribute("class");
@@ -127,6 +127,7 @@ function delete_textarea(e){
             textarea_array.splice(i,i+1); 
         }
     }
+    character_img1.src=watch_ad;
     // node.parentNode = div 태그
     // node.parentNode.parentNode = Element 태그
     node.parentNode.parentNode.removeChild(node.parentNode);
