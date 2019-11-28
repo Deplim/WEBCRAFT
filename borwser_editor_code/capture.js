@@ -117,6 +117,7 @@ $("#captureButton").on('click', function(e) {  //캡쳐 기능 활성화
           capture.src = canvas.toDataURL("image/jpeg");
 
           capture.onmousedown = function(event) {
+              current_target=event.target;
               captureMouseDown(event, capture);
           };
           capture.ondragstart = function() {

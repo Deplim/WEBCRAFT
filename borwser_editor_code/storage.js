@@ -66,7 +66,6 @@ function recieveURL(){
 				var temp_hi=highlight_List[i];
 				temp_hi.onmousedown = function(event) {
 					current_target=event.target;
-					highlight_target();
 				};
 			}
 
@@ -113,6 +112,7 @@ function recieveURL(){
 			for(var i = 0; i<capture_List.length; i++){
 				var temp_capture = capture_List[i];
 				temp_capture.onmousedown = function(event) {
+					current_target=event.target;
 					captureMouseDown(event, temp_capture);
 				};
 				temp_capture.ondragstart = function() {

@@ -111,7 +111,7 @@ function changeSelectionLocation(event){
         } else if (key == 83){ // s 키 입력
             highlight_mode(sel);
         } else if(key == 46) { // delete 키 입려
-        	delete_highlight();
+        	delete_target();
         } else if(key == 84){ // t 입력
         	translator();
         } else {
@@ -224,13 +224,18 @@ function highlight_target(){
 }
 
 // highlight 함수 3 :
-function delete_highlight(){
+function delete_target(){
 	console.log("current target : ");
 	console.log(current_target);
 	current_target.parentNode.removeChild(current_target);
 	for(var i=0 in highlight_array){
 		if(highlight_array[i][0]==current_target){
 			highlight_array.splice(i,i+1)
+		}
+	}
+	for(var i=0 in capture_array){
+		if(capture_array[i][0]==current_target){
+			capture_array.splice(i,i+1)
 		}
 	}
 }
