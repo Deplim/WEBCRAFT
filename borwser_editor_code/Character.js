@@ -1,7 +1,12 @@
+var watch_ad="https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/watch.webp"
+var text_ad="https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/text.webp"
+var wait_ad="https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/wait.webp"
+var drag_ad="https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/drag.webp"
+
 // 잠수시 뜰 이미지 변수
 var character_img1 = document.createElement('img');
 // 이미지 변수에 src 속성 삽입.(이미지 주소)
-character_img1.src= "https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/watch.webp";
+character_img1.src= watch_ad;
 character_img1.id = "character_img1_id";
 // 이미지 변수에 style 속성 삽입.
 character_img1.style="position: fixed; top: 0px; left: 0px; z-index: 900; width: 170px; height: 170px; visibility=hidden";
@@ -9,7 +14,7 @@ character_img1.setAttribute('draggable', true);
 
 
 character_img1.onmousedown = function(event) {
-	character_img1.src="https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/drag.webp"
+	character_img1.src=drag_ad;
     let shiftX = event.clientX - character_img1.getBoundingClientRect().left;
     let shiftY = event.clientY - character_img1.getBoundingClientRect().top;
 
@@ -31,7 +36,7 @@ character_img1.onmousedown = function(event) {
 
     // drop the ball, remove unneeded handlers
     character_img1.onmouseup = function() {
-    	character_img1.src="https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/watch.webp"
+    	character_img1.src=watch_ad;
         document.removeEventListener('mousemove', onMouseMove);
         character_img1.onmouseup = null;
     }
@@ -40,7 +45,6 @@ character_img1.ondragstart = function() {
     return false;
 };
 
-document.body.appendChild(character_img1);
 document.body.appendChild(character_img1);
 
 // 얼만큼 미입력 상태일때 반응을 줄건지
@@ -62,7 +66,7 @@ function time_update() {
     // 반응시 캐릭터 안보이게
     if(wait==1){
     	wait=0
-    	character_img1.src="https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/watch.webp"
+    	character_img1.src=watch_ad;
     }
 }
 
@@ -76,13 +80,13 @@ function PrintCharacter() {
     if(sec_gap > time && !appear){
     	wait=1;
         // 캐릭터 보이게 만들어줌
-        character_img1.src="https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/wait.webp"
+        character_img1.src=wait_ad;
     }
 }
 
 // 캐릭터 위치 이동 (텍스트 박스 생성시)
 function moveCharacter(absoluteLeft, absoluteTop) {
-    character_img1.src="https://raw.githubusercontent.com/Deplim/CWeb_browser_editor/master/source/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%84%A4%EB%A1%9C/text.webp"
+    character_img1.src=text_ad;
     absoluteLeft = absoluteLeft -170;
     character_img1.style="position: absolute; top: "+absoluteTop+"px; left: "+absoluteLeft+"px; z-index: 900; width: 170px; height: 170px; visibility=visible";
     
