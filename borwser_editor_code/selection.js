@@ -283,7 +283,9 @@ function jsonSend(test,left,top) {
 
 			// 번역 결과 삽입.
 			var tran_result = document.createElement('p');
-			tran_result.style="font-size:9px; font-weight:700; opacity:0.5; position: absolute; top: "+top+"px; left: "+left+"px; z-index: 899; height: 15px";
+			tran_result.style="font-size:9px; font-weight:700; opacity:0.5; position: absolute; top: "+top+"px; left: "+left+"px; z-index: 999;";
+			tran_result.mouseover="this.style.font-size=23px;"
+			tran_result.mouseout="this.style.fon-size=9px;"
 			tran_result.innerHTML=resulut_obj.message.result.translatedText;
 			document.body.appendChild(tran_result);
 		},

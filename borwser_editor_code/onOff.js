@@ -25,6 +25,10 @@ function changeState() {
         for(var i = 0; i<jbBook_List.length; i++) {
             jbBook_List[i].style.visibility = "visible";
         }
+        var capture_List = document.getElementsByClassName("capture_class");
+        for(var i = 0; i<capture_List.length; i++) {
+            capture_List[i].style.visibility = "visible";
+        }
         document.getElementById("character_img1_id").style.visibility = "visible";
         // 캐릭터 시간 시작
         StartClock();
@@ -47,6 +51,10 @@ function changeState() {
         var jbBook_List = document.getElementsByClassName("jbBook_class");
         for(var i = 0; i<jbBook_List.length; i++) {
             jbBook_List[i].style.visibility = "hidden";
+        }
+        var capture_List = document.getElementsByClassName("capture_class");
+        for(var i = 0; i<capture_List.length; i++) {
+            capture_List[i].style.visibility = "hidden";
         }
         document.getElementById("character_img1_id").style.visibility = "hidden";
         // 캐릭터 중지
