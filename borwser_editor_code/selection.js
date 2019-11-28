@@ -220,13 +220,14 @@ function highlight_mode(sel){
 // highlight 함수 1 :
 function highlight_target(){
 	current_target=event.target;
+	console.log("temp_check");
 }
 
 // highlight 함수 3 :
 function delete_highlight(){
 	console.log("current target : ");
 	console.log(current_target);
-	document.body.removeChild(current_target);
+	current_target.parentNode.removeChild(current_target);
 	for(var i=0 in highlight_array){
 		if(highlight_array[i][0]==current_target){
 			highlight_array.splice(i,i+1)

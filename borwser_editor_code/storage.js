@@ -63,6 +63,11 @@ function recieveURL(){
 			for(var i = 0; i<highlight_List.length; i++){
 				// highlight_array에 불러온 값 넣어줌, 두번째 배열 값에 하이라이트된 부분 문자열 넣어줘야함
 				highlight_array.push([highlight_List[i], null]);
+				var temp_hi=highlight_List[i];
+				temp_hi.onmousedown = function(event) {
+					current_target=event.target;
+					highlight_target();
+				};
 			}
 
 			// bookmark 태그 찾아줌
