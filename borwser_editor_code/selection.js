@@ -234,7 +234,7 @@ function delete_target(){
 		}
 	}
 	for(var i=0 in capture_array){
-		if(capture_array[i][0]==current_target){
+		if(capture_array[i]==current_target){
 			capture_array.splice(i,i+1)
 		}
 	}
