@@ -21,10 +21,10 @@ on_button.id="stateButton";
 on_button.innerHTML=("on");
 
 // style
-st_button.style="position: fixed; bottom: 40px; right: 10px;";
-ch_button.style="position: fixed; bottom: 10px; right: 10px;";
-ta_button.style="position: fixed; bottom: 10px; right: 170px;";
-on_button.style="position: fixed; bottom: 40px; right: 95px;";
+st_button.style="position: fixed; bottom: 40px; right: 10px; z-index: 900";
+ch_button.style="position: fixed; bottom: 10px; right: 10px; z-index: 900";
+ta_button.style="position: fixed; bottom: 10px; right: 170px; z-index: 900";
+on_button.style="position: fixed; bottom: 40px; right: 95px; z-index: 900";
 
 // body.appendChild
 document.body.appendChild(st_button);
