@@ -68,7 +68,7 @@ function insert_text_area(){
 
         // div style 속성 삽입.
         var div_area_att2 = document.createAttribute("style");
-        div_area_att2.value="position: absolute; left: "+absoluteLeft+"px; top: "+absoluteTop+"px; width: 150px; height: 150px;";
+        div_area_att2.value="z_index:999; position: absolute; left: "+absoluteLeft+"px; top: "+absoluteTop+"px; width: 150px; height: 150px;";
         div_area.setAttributeNode(div_area_att2);
 
         // div class 속성 삽입.

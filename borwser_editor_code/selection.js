@@ -284,8 +284,8 @@ function jsonSend(test,left,top) {
 			// 번역 결과 삽입.
 			var tran_result = document.createElement('p');
 			tran_result.style="font-size:9px; font-weight:700; opacity:0.5; position: absolute; top: "+top+"px; left: "+left+"px; z-index: 999;";
-			tran_result.mouseover="this.style.font-size=23px;"
-			tran_result.mouseout="this.style.fon-size=9px;"
+			tran_result.addEventListener("mouseenter", function(event) {event.target.style.fontSize=22+'px'; event.target.style.background='#CBFF75'; event.target.style.opacity='1';}, false)
+			tran_result.addEventListener("mouseout", function(event) {event.target.style.fontSize=9+'px'; event.target.style.background='none'; event.target.style.opacity='0.5';}, false)
 			tran_result.innerHTML=resulut_obj.message.result.translatedText;
 			document.body.appendChild(tran_result);
 		},

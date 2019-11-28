@@ -9,7 +9,7 @@ var character_img1 = document.createElement('img');
 character_img1.src= watch_ad;
 character_img1.id = "character_img1_id";
 // 이미지 변수에 style 속성 삽입.
-character_img1.style="position: fixed; top: 0px; left: 0px; z-index: 900; width: 170px; height: 170px; visibility=hidden";
+character_img1.style="position: fixed; top: 0px; left: 0px; z-index: 999; width: 170px; height: 170px; visibility=hidden";
 character_img1.setAttribute('draggable', true);
 
 
@@ -88,7 +88,7 @@ function PrintCharacter() {
 function moveCharacter(absoluteLeft, absoluteTop) {
     character_img1.src=text_ad;
     absoluteLeft = absoluteLeft -170;
-    character_img1.style="position: absolute; top: "+absoluteTop+"px; left: "+absoluteLeft+"px; z-index: 900; width: 170px; height: 170px; visibility=visible";
+    character_img1.style="position: absolute; top: "+absoluteTop+"px; left: "+absoluteLeft+"px; z-index: 999; width: 170px; height: 170px; visibility=visible";
     
 }
 
