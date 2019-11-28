@@ -147,7 +147,7 @@ function captureMouseDown(event, capture) {
     }
 
     function onMouseMove(event) {
-        moveAt(event.pageX, event.pageY);
+        moveAt(event.clientX, event.clientY);
     }
     // move the ball on mousemove
     document.addEventListener('mousemove', onMouseMove);
