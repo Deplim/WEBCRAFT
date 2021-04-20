@@ -11,7 +11,6 @@ web Craft.
 ### 사용법
 
  프로젝트의 borwser_editor_code 폴더를 확장 프로그램으로 로드하면 사용할 수 있습니다.  
- 향후에는 크롬 웹스토어에 올릴 예정에 있습니다.
 
 ![확장프로그램 실행](https://github.com/Deplim/CWeb_browser_editor/blob/master/source/%EC%98%88%EC%8B%9C%20%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%99%95%EC%9E%A5%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%8B%A4%ED%96%89.JPG?raw=true)
 
